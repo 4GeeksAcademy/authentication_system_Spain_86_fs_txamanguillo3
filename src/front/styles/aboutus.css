@@ -1,0 +1,124 @@
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    gap: 6px;
+    background-color: #b1c2c3;
+  }
+  .developer{
+    font-size: 2rem; 
+    color: #333; 
+    margin-bottom: 4px;
+    font-weight: bold;
+    color: #157c7c;
+  }
+  
+  
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    height: 100%;
+    max-width: 350px;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+    background-color: #f2e5d0;
+    
+  }
+  
+  
+  .card-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+  
+  
+  .card-content {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #095555;
+  }
+  
+  
+  .card-description {
+    font-size: 1rem;
+    color: #231F20;
+    margin-bottom: 20px;
+    min-height: 100px;
+  }
+  
+  
+  .card-button {
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition:  0.4s ease;
+    background-color: #1D5B5B;
+  }
+  
+  .card-button:hover {
+    background-color: #328987;
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .card {
+      width: 100%;
+      max-width: none;
+    }
+  
+    .card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      /* border-radius: 50%; */
+      object-position: center 40%;
+      margin-top: 40px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+  
+      
+    }
+  
+    .card-title {
+      font-size: 1.3rem; 
+    }
+  
+    .card-description {
+      font-size: 0.9rem; 
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card-title {
+      font-size: 1.1rem;
+    }
+  
+    .card-description {
+      font-size: 0.85rem;
+    }
+  
+    .card-button {
+      padding: 8px 16px;
+    }
+  }

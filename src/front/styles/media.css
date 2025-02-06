@@ -1,0 +1,30 @@
+@media (min-width: 768px) {
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+  
+    .card {
+      width: 45%;
+      margin: 15px;
+    }
+  
+    .card-title {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container {
+      width: 70%;
+    }
+  
+    .card {
+      width: 30%;
+      margin: 20px;
+    }
+  
+    .card-title {
+      font-size: 2.5rem;
+    }
+  }

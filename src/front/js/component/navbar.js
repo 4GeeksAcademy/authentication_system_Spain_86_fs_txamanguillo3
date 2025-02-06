@@ -11,8 +11,8 @@ export const Navbar = () => {
 					<img className="navbar-img" src={logo} alt="Placeholder" />
 				</a>
 			</div>
-			<ul className="navbar">
-				<div className="navbar-menu">
+			<ul className="navbar-list w-100" >
+				<div className="navbar-menu d-sm-flex"> 
 					<li className="navbar-item">
 						<a href="/" className="navbar-link">Inicio</a>
 					</li>
@@ -26,7 +26,7 @@ export const Navbar = () => {
 						<a href="/aboutUs" className="navbar-link">Nosotros</a>
 					</li>
 				</div>
-				<div className="register-buttoms">
+				<div className="register-buttoms d-sm-flex">
 					<Link to="/login">
 						<button className="btn">LogIn</button>
 					</Link>
