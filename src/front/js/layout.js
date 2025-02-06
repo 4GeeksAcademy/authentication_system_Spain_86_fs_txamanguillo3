@@ -14,6 +14,7 @@ import { Newsletter } from "./pages/newsletter.jsx";
 import { Tienda } from "./pages/tienda.jsx";
 import { ProtectedOne } from "./pages/protected/protected-one.jsx";
 import { ProtectedTwo } from "./pages/protected/protected-two.jsx";
+import { Fade } from "react-reveal"
 
 //create your first component
 const Layout = () => {
@@ -24,6 +25,7 @@ const Layout = () => {
     if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
 
     return (
+        <Fade>
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
@@ -34,8 +36,7 @@ const Layout = () => {
                         <Route element={<Login />} path="/login" />
                         <Route element={<AboutUs />} path="/aboutUs" />
                         <Route element={<Session />} path="/session">
-                            <Route path='home' element={<Home />} />
-                            {/* <Route path='/protected-two' element={<ProtectedTwo />} />  */}
+                            {/* <Route path='/protected-one' element={<ProtectedTwo />} />  */}
                         </Route>
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
@@ -43,6 +44,7 @@ const Layout = () => {
                 </ScrollToTop>
             </BrowserRouter>
         </div>
+        </Fade>
     );
 };
 

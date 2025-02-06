@@ -1,41 +1,86 @@
-.navbar {
+.navbar-top {
     display: flex;
+    justify-content: center;
     padding: 1rem;
-    background-color: #1D5B5B;
-    color: white;
+    background-color: #00444E;
+  }
+
+.navbar-bot {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+  background-color: #DFF2E9;
+  border-radius: 40px;
+  width: 40rem;
+  box-shadow: 6px 7px 3px black
+}
+
+  .navbar-search{
+    display: flex;
   }
 
   .navbar-img{
     height: 5rem;
     width: 5rem;
     border-radius: 50%;
+    box-shadow: 5px 2px 2px black;
   }
 
   .navbar-menu {
-  
     list-style: none;
   }
   
   .navbar-link {
-    color: #EEDDBF;
+    color: #00444E;
     font-weight: 800;
     font-size: larger;
     text-decoration: none;
     padding: 0.5rem 1rem;
+    
   }
   
   .navbar-link:hover {
-    background-color: #E6A233;
+    background-color: #00444E;
     border-radius: 4px;
-    color: #231F20;
+    color: #F1F381;
   }
 
-  .register-buttoms {
+  .register {
+    display: flex;
     gap: 1rem;
   }
-  
-  .btn {
-    background-color: #E6A233;
-    margin-bottom: 3px;
+
+  .button-register {
+    font-weight: 600;
+    background-color: #F1F381;
     width: 7rem;
+    border-radius: 15px;
+    box-shadow: 5px 2px 2px black;
+  }
+
+  .button-register:hover {
+    background-color: #F1F381;
+    border-radius: 10px;
+    color: #00444E;
+    box-shadow: 5px 2px 2px black;
+  }
+
+
+  .button-search {
+    background-color: #F1F381;
+    width: 3rem;
+    border-radius: 15px;
+    box-shadow: 5px 2px 2px black;
+  }
+
+  .button-search:hover {
+    background-color: #F1F381;
+    border-radius: 10px;
+    color: #00444E;
+    box-shadow: 5px 2px 2px black;
+  }
+
+  .input {
+    box-shadow: 5px 3px 3px black;
   }
