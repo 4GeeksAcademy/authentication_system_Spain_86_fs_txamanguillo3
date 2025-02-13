@@ -5,27 +5,27 @@ import '../../styles/tinderSlider.css'
 const db = [
   {
     name: 'Richard Hendricks',
-    url: '../front/img/richard.jpg'
+    url: 'https://img.freepik.com/free-photo/happy-man-student-with-afro-hairdo-shows-white-teeth-being-good-mood-after-classes_273609-16608.jpg?semt=ais_hybrid'
   },
   {
     name: 'Erlich Bachman',
-    url: '../front/img/erlich.jpg'
+    url: 'https://thumbs.dreamstime.com/b/showing-you-two-steps-to-successful-business-portrait-friendly-looking-happy-joyful-redhead-male-beard-making-sign-135019475.jpg'
   },
   {
     name: 'Monica Hall',
-    url: '../front/img/monica.jpg'
+    url: 'https://st4.depositphotos.com/20363444/27462/i/450/depositphotos_274625260-stock-photo-happy-curly-african-american-girl.jpg'
   },
   {
-    name: 'Jared Dunn',
-    url: '../front/img/jared.jpg'
+    name: 'Denise Dunn',
+    url: 'https://t4.ftcdn.net/jpg/05/43/21/21/360_F_543212139_Hh4Z8sffanKvydV9su1M9ybyVb06nClI.jpg'
   },
   {
     name: 'Dinesh Chugtai',
-    url: '../front/img/dinesh.jpg'
+    url: 'https://st2.depositphotos.com/1715570/5435/i/450/depositphotos_54357355-stock-photo-handsome-young-black-man-smiling.jpg'
   }
 ]
 
-function TinderSlider () {
+export default function TinderSlider () {
   const [currentIndex, setCurrentIndex] = useState(db.length - 1)
   const [lastDirection, setLastDirection] = useState()
   // used for outOfFrame closure
@@ -78,16 +78,8 @@ function TinderSlider () {
   }
 
   return (
-    <div>
-      <link
-        href='https://fonts.googleapis.com/css?family=Damion&display=swap'
-        rel='stylesheet'
-      />
-      <link
-        href='https://fonts.googleapis.com/css?family=Alatsi&display=swap'
-        rel='stylesheet'
-      />
-      <h1>React Tinder Card</h1>
+    <div className='containerBody'>
+      <h1>Slide to Buy</h1>
       <div className='cardContainer'>
         {db.map((character, index) => (
           <TinderCard
@@ -111,17 +103,17 @@ function TinderSlider () {
         <button style={{ backgroundColor: !canGoBack && '#c3c4d3' }} onClick={() => goBack()}>Undo swipe!</button>
         <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('right')}>Swipe right!</button>
       </div>
+      <div className='infoText'>
       {lastDirection ? (
-        <h2 key={lastDirection} className='infoText'>
+        <h1 key={lastDirection} className='infoText'>
           You swiped {lastDirection}
-        </h2>
+        </h1>
       ) : (
-        <h2 className='infoText'>
+        <h1 className='infoText'>
           Swipe a card or press a button to get Restore Card button visible!
-        </h2>
+        </h1>
       )}
+      </div>
     </div>
   )
 }
-
-export default TinderSlider

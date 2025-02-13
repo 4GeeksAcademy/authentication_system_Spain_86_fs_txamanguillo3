@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Loader } from "../component/loader";
 import Slider from '../component/slider'
+import { CardSlider } from '../component/cardSlider';
  
 
 
@@ -27,13 +28,7 @@ export const Home = () => {
       inicioLoader();
   }, []) 
 
-  const onSwipe = (direction) => {
-    console.log('You swiped: ' + direction)
-  }
-  
-  const onCardLeftScreen = (myIdentifier) => {
-    console.log(myIdentifier + ' left the screen')
-  }
+
 
   return (isLoading) ? <Loader /> : (
     <>

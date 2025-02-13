@@ -88,6 +88,7 @@
 		"react-tinder-card": "^1.6.4",
 		"styled-components": "^4.4.1",
 		"styled-jumbotron-component": "^4.0.0",
-		"sweetalert2": "^11.16.0"
+		"sweetalert2": "^11.16.0",
+		"webkit": "^0.0.0"
 	}
 }
