@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { uploadImageToCloudinary } from '../CloudinaryUploadWidget';
-import "../../styles/addProductForm.css";
+import "../../styles/addProductForm.css"; // Importamos el archivo CSS para darle estilo a esto(revisar importación)
 
 const AddProductForm = ({ onProductAdded }) => {
   const [formData, setFormData] = useState({

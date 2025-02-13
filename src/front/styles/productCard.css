@@ -1,37 +1,90 @@
 .product-card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 300px;
-    margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;                
+  padding: 20px;
+}
+
+.product {
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-color: #007bff;
+  outline: none;
+}
+
+.product:active {
+  animation: wiggle 0.5s ease;
+}
+
+@keyframes wiggle {
+  0% { transform: translateY(-5px) rotate(0deg); }
+  25% { transform: translateY(-5px) rotate(3deg); }
+  50% { transform: translateY(-5px) rotate(0deg); }
+  75% { transform: translateY(-5px) rotate(-3deg); }
+  100% { transform: translateY(-5px) rotate(0deg); }
+}
+
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.product-image-container:hover .product-image {
+  transform: scale(1.05);
+}
+
+.product-card-body {
+  padding: 10px;
+}
+
+.product-title {
+  font-size: 1.2rem;
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.product-description {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+@media (max-width: 768px) {
+  .product {
+    max-width: 90%;
   }
-  
-  .product-image {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-  .product-card-body {
-    padding: 10px;
-  }
-  
   .product-title {
-    font-size: 1.2rem;
-    margin: 0 0 10px 0;
+    font-size: 1.1rem;
   }
-  
   .product-description {
-    font-size: 0.9rem;
-    color: #555;
-    margin: 0 0 10px 0;
+    font-size: 0.85rem;
   }
-  
   .product-price {
-    font-weight: bold;
-    font-size: 1rem;
-    color: #333;
+    font-size: 0.95rem;
   }
-  
+}
