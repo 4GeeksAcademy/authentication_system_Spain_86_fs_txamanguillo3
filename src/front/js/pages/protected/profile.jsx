@@ -32,19 +32,19 @@ export const Profile = () => {
     }));
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileData((prev) => ({
-          ...prev,
-          profileImage: reader.result, // Guardar la imagen en base64
-        }));
-      };
-      reader.readAsDataURL(file); // Convertir la imagen a base64
-    }
-  };
+  // const handleImageChange = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setProfileData((prev) => ({
+  //         ...prev,
+  //         profileImage: reader.result, // Guardar la imagen en base64
+  //       }));
+  //     };
+  //     reader.readAsDataURL(file); // Convertir la imagen a base64
+  //   }
+  // };   ESTO NO ESTA HACIENDO NADA PERO DEJARLO POR SI ACASO
 
   const handleSave = async () => {
     setIsEditing(false);
