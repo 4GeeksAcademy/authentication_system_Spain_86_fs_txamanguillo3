@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Loader } from "../component/loader";
 import Tinderslider from '../component/tinderSlider';
+import { Footer } from '../component/footer';
 
 
 export const Slidetobuy = () => {
@@ -27,6 +28,9 @@ export const Slidetobuy = () => {
 
 
   return (isLoading) ? <Loader /> : (
+    <>
     <Tinderslider />
+    <Footer />
+    </>
   )
 }

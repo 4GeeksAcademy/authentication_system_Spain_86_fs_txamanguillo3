@@ -5,6 +5,8 @@ import { auto } from '@cloudinary/url-gen/actions/resize';
 import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
 import { AdvancedImage } from '@cloudinary/react';
 import { ProductCards } from '../component/ProductCard';
+import '../../styles/tienda.css'
+import { Footer } from '../component/footer';
 
 
 export const Tienda = () => {
@@ -40,9 +42,21 @@ export const Tienda = () => {
   
   return (isLoading) ? <Loader /> : (
     <>
+    <div className='shop'>
       <h1>Tienda</h1>
+      <br />
+      <h2 className='d-flex justify-content-center'>Categoría 1</h2>
       <ProductCards />
-
+      <br></br>
+      <br></br>
+      <h2 className='d-flex justify-content-center'>Categoría 2</h2>
+      <ProductCards />
+      <br></br>
+      <br></br>
+      <h2 className='d-flex justify-content-center'>Categoría 3</h2>
+      <ProductCards />
+      </div>
+      <Footer />
     </>
   )
 }

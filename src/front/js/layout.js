@@ -1,4 +1,5 @@
 import React from "react";
+import { useState,useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
@@ -16,20 +17,41 @@ import { Cart } from "./pages/protected/cart.jsx";
 import { Fade } from "react-reveal";
 import { TopNavbar } from "./component/topNavbar.js";
 import { Slidetobuy } from "./pages/Slidetobuy.jsx";
+import { Loader } from "./component/loader.js";
 
 import { ProtectedRoute } from "./pages/session.jsx";
-import { useState } from "react";
 
 import { CloudinaryImage } from "./pages/cloudinary.jsx";
 
 //create your first component
 const Layout = () => {
+    
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
     // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
     
     if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
     console.log("Backend URL:", process.env.BACKEND_URL);
+
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
+  
+      return () => clearTimeout(timer); 
+    }, []);
+  
+  const inicioLoader = async () => {
+    setIsLoading(true);
+      await waitingWarever();
+      setIsLoading(false);
+  
+  }
+  
+  useEffect(() => {
+      inicioLoader();
+  }, []) 
 
     return (
         <Fade>
@@ -56,7 +78,6 @@ const Layout = () => {
                 </ScrollToTop>
             </BrowserRouter>
         </div>
-        <Footer />
         </Fade>
     );
 };

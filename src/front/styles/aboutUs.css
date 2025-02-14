@@ -3,20 +3,26 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     gap: 6px;
-    background-color: #b1c2c3;
+    background-color: #F0F2F1;
   }
+
+  .Cards {
+    display: flex;
+    gap: 5vh;
+    margin-bottom: 10vh;
+  }
+
   .developer{
     font-size: 2rem; 
     color: #333; 
     margin-bottom: 4px;
     font-weight: bold;
-    color: #157c7c;
+    color: #00444E;
   }
   
   
-  .card {
+  .cardUs {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -28,8 +34,7 @@
     align-items: stretch;
     flex-direction: column;
     transition: all 0.3s ease-in-out;
-    background-color: #f2e5d0;
-    
+    background-color: #DFF2E9;
   }
   
   
@@ -63,17 +68,19 @@
   
   
   .card-button {
-    color: white;
+    color: #00444E;
+    font-weight: 600;
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition:  0.4s ease;
-    background-color: #1D5B5B;
+    background-color: #F1F381;
   }
   
   .card-button:hover {
-    background-color: #328987;
+    background-color: #00444E;
+    color: #F1F381;
   }
   
   /* Estilos responsivos */
