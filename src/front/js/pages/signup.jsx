@@ -4,6 +4,7 @@ import "../../styles/signup.css";
 import { Button } from "react-bootstrap";
 import { Loader } from "../component/loader";
 import Swal from "sweetalert2";
+import { Footer } from '../component/footer';
 
 export const SignUp = () => {
   const [form, setForm] = useState({ username: "", email: "", password: "" });

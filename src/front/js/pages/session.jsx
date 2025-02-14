@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { Loader } from "../component/loader";
+import { Footer } from '../component/footer';
 
 export const ProtectedRoute = () => {
   const token = localStorage.getItem("token") || sessionStorage.getItem("token");

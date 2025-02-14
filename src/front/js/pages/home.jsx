@@ -4,6 +4,7 @@ import { Loader } from "../component/loader";
 import Slider from '../component/slider'
 import { CardSlider } from '../component/cardSlider';
 import { ProductCards } from '../component/ProductCard';
+import { Footer } from '../component/footer';
  
 
 
@@ -34,7 +35,13 @@ export const Home = () => {
   return (isLoading) ? <Loader /> : (
     <>
     <Slider />
+    <br />
+    <h1>Productos más vendidos</h1>
     <ProductCards />
+    <h1>Productos en oferta</h1>
+    <ProductCards />
+    <br />
+    <Footer />
     </>
   )
 }

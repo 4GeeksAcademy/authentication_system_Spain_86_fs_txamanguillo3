@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap";
 import { Loader } from "../component/loader";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
+import { Footer } from '../component/footer';
 
 export const Login = () => {
   const [error, setError] = useState(null);
