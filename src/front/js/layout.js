@@ -18,7 +18,6 @@ import { TopNavbar } from "./component/topNavbar.js";
 import { Slidetobuy } from "./pages/Slidetobuy.jsx";
 
 import { ProtectedRoute } from "./pages/session.jsx";
-import { useState } from "react";
 
 import { CloudinaryImage } from "./pages/cloudinary.jsx";
 

@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Loader } from "../component/loader";
 import Slider from '../component/slider'
 import { CardSlider } from '../component/cardSlider';
+import { ProductCards } from '../component/ProductCard';
  
 
 
@@ -33,6 +34,7 @@ export const Home = () => {
   return (isLoading) ? <Loader /> : (
     <>
     <Slider />
+    <ProductCards />
     </>
   )
 }

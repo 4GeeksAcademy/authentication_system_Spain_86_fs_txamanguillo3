@@ -41,8 +41,17 @@ export const Tienda = () => {
   return (isLoading) ? <Loader /> : (
     <>
       <h1>Tienda</h1>
+      <br />
+      <h2 className='d-flex justify-content-center'>Categoría 1</h2>
       <ProductCards />
-
+      <br></br>
+      <br></br>
+      <h2 className='d-flex justify-content-center'>Categoría 2</h2>
+      <ProductCards />
+      <br></br>
+      <br></br>
+      <h2 className='d-flex justify-content-center'>Categoría 3</h2>
+      <ProductCards />
     </>
   )
 }

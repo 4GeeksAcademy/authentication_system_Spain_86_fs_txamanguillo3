@@ -8,7 +8,7 @@ export const CloudinaryImage = () => {
 
   const myImage = cld.image("Gemini_Generated_Image_jjv5xnjjv5xnjjv5_ilrpl4")
     .format("webp") 
-    .resize("w_300");
+    .resize("");
 
   return (
     <div>
