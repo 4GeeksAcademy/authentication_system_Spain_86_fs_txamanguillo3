@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Loader } from "../component/loader";
 import Slider from '../component/slider'
 import { CardSlider } from '../component/cardSlider';
-import { ProductCards } from '../component/ProductCard';
+import { ProductCards, ImportImagesProfile } from '../component/ProductCard';
 import { Footer } from '../component/footer';
  
 
@@ -40,6 +40,7 @@ export const Home = () => {
     <ProductCards />
     <h1>Productos en oferta</h1>
     <ProductCards />
+    {/* <ImportImagesProfile/> */}
     <br />
     <Footer />
     </>

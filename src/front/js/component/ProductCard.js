@@ -5,12 +5,61 @@ import { Cloudinary } from '@cloudinary/url-gen';
 import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
 import { auto } from '@cloudinary/url-gen/actions/resize';
 import "../../styles/productCard.css"; 
+import { Buffer } from 'buffer';
+
+export const ImportImagesProfile = async() => {
+  const cloudName = "dmo7oubln";
+  const apiKey = "525655867213797";
+  const apiSecret = "vs0x8sROaO_77RaoO2L8sZm4BQM";
+  const folderName = "products";
+
+  const auth = Buffer.from(`${apiKey}:${apiSecret}`).toString("base64");
+
+  const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/resources/image/upload?prefix=${folderName}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Basic ${auth}`,
+    },
+  })
+  const data = await response.json()
+          if (!response.ok) {
+            console.log("Error al cargar imagenes")
+            }
+          else {
+            console.log("imagenes cargadas con exito", data)
+            return data
+            }
+
+  return(<>
+    <div>
+      
+    </div>
+  </>)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const ProductCards = () => {
-  // Configura Cloudinary (ajustar el cloudinary)
   const cld = new Cloudinary({ cloud: { cloudName: 'dmo7oubln' } });
   
-  // Genera la imagen optimizada
   const img = cld.image('cld-sample-5')
     .format('auto')
     .quality('auto')
@@ -24,7 +73,7 @@ export const ProductCards = () => {
     { id: 4, title: 'Product Title 4', description: 'Descripción 4', price: '$40' },
   ];
 
-  return (
+  return (<>
     <div className="product-card">
       {products.map(product => (
         <div className="product" key={product.id}>
@@ -39,7 +88,7 @@ export const ProductCards = () => {
         </div>
       ))}
     </div>
-  );
+    </>);
 };
 
 
