@@ -5,7 +5,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 import { AboutUs } from "./pages/aboutUs.jsx";
 import { SignUp  } from "./pages/signup.jsx";
-import { Admin  } from "./pages/admin.jsx";
+import { ExportProductImage  } from "./pages/admin.jsx";
 import { Login } from "./pages/login.jsx";
 import injectContext from "./store/appContext";
 import { Footer } from "./component/footer";
@@ -72,7 +72,7 @@ const Layout = () => {
                             <Route path="favorites" element={<Favorites />} />
                             <Route path="cart" element={<Cart />} />
                         </Route>
-                        <Route path="admin" element={<Admin />} />
+                        <Route path="admin" element={<ExportProductImage />} />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>

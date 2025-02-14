@@ -22,7 +22,6 @@ export const ProductCards = () => {
     { id: 2, title: 'Product Title 2', description: 'Descripción 2', price: '$20' },
     { id: 3, title: 'Product Title 3', description: 'Descripción 3', price: '$30' },
     { id: 4, title: 'Product Title 4', description: 'Descripción 4', price: '$40' },
-    { id: 5, title: 'Product Title 5', description: 'Descripción 5', price: '$50' }
   ];
 
   return (
