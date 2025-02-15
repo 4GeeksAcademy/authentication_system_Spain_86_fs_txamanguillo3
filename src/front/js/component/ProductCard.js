@@ -60,42 +60,46 @@ export const ImportImagesProfile = async() => {
 export const ProductCards = () => {
   const cld = new Cloudinary({ cloud: { cloudName: 'dmo7oubln' } });
   
-  const img = cld.image('cld-sample-5')
-    .format('auto')
-    .quality('auto')
-    .resize(auto().gravity(autoGravity()).width(500).height(500));
-  
-  // Array dummy con 5 productos(esta forma de crear varias cards me gustó)
+  // Array dummy con 5 productos (cada uno incluye un imageId)
   const products = [
-    { id: 1, title: 'Product Title 1', description: 'Descripción 1', price: '$10' },
-    { id: 2, title: 'Product Title 2', description: 'Descripción 2', price: '$20' },
-    { id: 3, title: 'Product Title 3', description: 'Descripción 3', price: '$30' },
-    { id: 4, title: 'Product Title 4', description: 'Descripción 4', price: '$40' },
+    { id: 1, title: 'Product Title 1', description: 'Descripción 1', price: '$10', imageId: 'cld-sample-5' },
+    { id: 2, title: 'Product Title 2', description: 'Descripción 2', price: '$20', imageId: 'cld-sample-5' },
+    { id: 3, title: 'Product Title 3', description: 'Descripción 3', price: '$30', imageId: 'cld-sample-5' },
+    { id: 4, title: 'Product Title 4', description: 'Descripción 4', price: '$40', imageId: 'cld-sample-5' },
+    { id: 5, title: 'Product Title 5', description: 'Descripción 5', price: '$50', imageId: 'cld-sample-5' }
   ];
 
-  return (<>
-    <div className="product-card">
-      {products.map(product => (
-        <div className="product" key={product.id}>
-          <div className="product-image-container">
-            <AdvancedImage cldImg={img} className="product-image" />
+  return (
+    <div className="product-card-list">
+      {products.map(product => {
+        // Para cada producto, genera la imagen usando su imageId
+        const img = cld.image(product.imageId)
+          .format('auto')
+          .quality('auto')
+          .resize(auto().gravity(autoGravity()).width(500).height(500));
+          
+        return (
+          <div className="product" key={product.id}>
+            <div className="product-image-container">
+              <AdvancedImage cldImg={img} className="product-image" />
+            </div>
+            <div className="product-card-body">
+              <h3 className="product-title">{product.title}</h3>
+              <p className="product-description">{product.description}</p>
+              <p className="product-price">{product.price}</p>
+            </div>
           </div>
-          <div className="product-card-body">
-            <h3 className="product-title">{product.title}</h3>
-            <p className="product-description">{product.description}</p>
-            <p className="product-price">{product.price}</p>
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
-    </>);
+  );
 };
 
 
 
 
 
-
+// este codigo fue el primero
 // import React from 'react';
 // import '../../styles/productCard.css'; // Importamos el archivo CSS para darle estilo a esto (revisar importación)
 // import { AdvancedImage } from '@cloudinary/react';
