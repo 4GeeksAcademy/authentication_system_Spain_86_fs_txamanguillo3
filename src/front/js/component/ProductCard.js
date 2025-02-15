@@ -99,6 +99,16 @@ export const ProductCards = () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
 // este codigo fue el primero
 // import React from 'react';
 // import '../../styles/productCard.css'; // Importamos el archivo CSS para darle estilo a esto (revisar importación)

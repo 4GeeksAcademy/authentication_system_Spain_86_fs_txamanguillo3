@@ -114,7 +114,7 @@ def create_product():
         return jsonify({"error": str(e)}), 400
     
 
-@api.route('/products/images', methods=['GET'])
+@api.route('/products', methods=['GET'])
 def import_images_for_products():
     auth = base64.b64encode(f"{API_KEY}:{API_SECRET}".encode("utf-8")).decode("utf-8")
     url = f"https://api.cloudinary.com/v1_1/{CLOUD_NAME}/resources/image/upload?prefix={FOLDER_NAME}"
