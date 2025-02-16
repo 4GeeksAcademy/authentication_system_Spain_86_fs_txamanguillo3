@@ -48,10 +48,10 @@ class Product(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.name,
+            "title": self.name,
             "price": self.price,
             "description": self.description,
-            "image_url": self.image_url
+            "imageId": self.image_url
         }
     
     
