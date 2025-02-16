@@ -9,7 +9,6 @@ import { ExportProductImage  } from "./pages/admin.jsx";
 import { Login } from "./pages/login.jsx";
 import injectContext from "./store/appContext";
 import { Footer } from "./component/footer";
-import { ImportImagesProfile } from "./component/ProductCard.js";
 import { Home } from "./pages/home.jsx";
 import { Tienda } from "./pages/tienda.jsx";
 import { Profile } from "./pages/protected/profile.jsx";
@@ -74,7 +73,6 @@ const Layout = () => {
                             <Route path="cart" element={<Cart />} />
                         </Route>
                         <Route path="admin" element={<ExportProductImage />} />
-                        <Route path="images" element={<ImportImagesProfile />} />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>
