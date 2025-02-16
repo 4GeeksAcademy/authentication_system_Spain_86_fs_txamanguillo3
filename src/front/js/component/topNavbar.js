@@ -12,7 +12,7 @@ export const TopNavbar = () => {
             <Navbar expand="lg" className="">
                 <Container className=''>
                     <div className=''>
-                        <button className='searchButton'><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button className='searchButton'><i className="fa-solid fa-magnifying-glass"></i></button>
                         <input
                             type="search"
                             placeholder="Search"

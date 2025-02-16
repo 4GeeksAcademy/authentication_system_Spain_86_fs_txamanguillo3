@@ -18,17 +18,6 @@ export const Home = () => {
   
       return () => clearTimeout(timer); 
     }, []);
-  
-  const inicioLoader = async () => {
-    setIsLoading(true);
-      await waitingWearever();
-      setIsLoading(false);
-  
-  }
-  
-  useEffect(() => {
-      inicioLoader();
-  }, []) 
 
 
 
