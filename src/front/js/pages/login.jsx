@@ -48,16 +48,7 @@ export const Login = () => {
         return () => clearTimeout(timer); 
       }, []);
     
-    const inicioLoader = async () => {
-      setIsLoading(true);
-        await waitingWarever();
-        setIsLoading(false);
-    
-    }
-    
-    useEffect(() => {
-        inicioLoader();
-    }, []) 
+
 
   return (isLoading) ? <Loader /> : (
     <>
