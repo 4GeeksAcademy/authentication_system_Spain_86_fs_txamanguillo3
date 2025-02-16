@@ -1,19 +1,16 @@
-import React, { useState } from 'react';
-import { uploadImageToCloudinary } from '../component/CloudinaryUploadWidget';
+import React, { useContext, useState } from 'react';
+import CloudinaryUploadWidget from '../component/CloudinaryUploadWidget';
 import "../../styles/addProductForm.css"; // Importamos el archivo CSS para darle estilo a esto(revisar importación)
+import { Actions } from '@cloudinary/url-gen/index';
+import { Context } from '../store/appContext';
 
 const AddProductForm = ({ onProductAdded }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    price: '',
-    description: '',
-    file: null,
-  });
+  const { actions } = useContext(Context);
 
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
-  const [image_url, setImageUrl] = useState('');
+  const [image_url, setImageURL] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,11 +20,11 @@ const AddProductForm = ({ onProductAdded }) => {
       description,
       image_url
     }
-    console.log(product);
+    actions.addProduct(product);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="add-product-form">
+    <div className="add-product-form">
       <input
         type="text"
         name="name"
@@ -54,9 +51,9 @@ const AddProductForm = ({ onProductAdded }) => {
         className="form-textarea"
         required
       ></textarea>
-      <CloudinaryUploadWidget folder='products' setImageUrl={setImageUrl}/>
-      <button type="submit" className="form-button">Add Product</button>
-    </form>
+      <CloudinaryUploadWidget folder='products' setImageURL={setImageURL} />
+      <button className="form-button" onClick={handleSubmit}>Add Product</button>
+    </div>
   );
 };
 

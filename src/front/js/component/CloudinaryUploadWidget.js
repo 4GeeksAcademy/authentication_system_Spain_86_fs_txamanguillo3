@@ -24,7 +24,6 @@ const CloudinaryUploadWidget = ({ folder, setImageURL }) => {
         uploadWidgetRef.current = window.cloudinary.createUploadWidget(
           uwConfig,
           (error, result) => {
-            console.log(result)
             if (!error && result && result.event === 'success') {
               const { url } = result.info
               setImageURL(url);
