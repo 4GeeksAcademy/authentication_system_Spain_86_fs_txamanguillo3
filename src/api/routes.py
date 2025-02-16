@@ -8,11 +8,19 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required, get_jwt_identity
+import os
+import requests
+import base64
 
 api = Blueprint('api', __name__)
 
 # api.config["JWT_SECRET_KEY"] = "txamanguillo"  
 # jwt = JWTManager(api)
+CLOUD_NAME = os.environ.get("CLOUDINARY_CLOUD_NAME", "dmo7oubln")
+API_KEY = os.environ.get("CLOUDINARY_API_KEY", "525655867213797")
+API_SECRET = os.environ.get("CLOUDINARY_API_SECRET", "vs0x8sROaO_77RaoO2L8sZm4BQM")
+FOLDER_NAME = "products"
+
 
 # Allow CORS requests to this API
 CORS( api )
@@ -104,6 +112,20 @@ def create_product():
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 400
+    
+
+@api.route('/products', methods=['GET'])
+def import_images_for_products():
+    auth = base64.b64encode(f"{API_KEY}:{API_SECRET}".encode("utf-8")).decode("utf-8")
+    url = f"https://api.cloudinary.com/v1_1/{CLOUD_NAME}/resources/image/upload?prefix={FOLDER_NAME}"
+    
+    response = requests.get(url, headers={"Authorization": f"Basic {auth}"})
+    if response.status_code != 200:
+        return jsonify({"error": "Error al cargar imágenes"}), response.status_code
+
+    data = response.json()
+    # Retorna, por ejemplo, una lista de URLs o la data completa
+    return jsonify(data), 200
 
     
 
