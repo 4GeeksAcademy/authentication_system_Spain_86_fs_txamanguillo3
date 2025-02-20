@@ -1,6 +1,3 @@
-"""
-This module takes care of starting the API Server, Loading the DB and Adding the endpoints
-"""
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Product, Cart
 from api.utils import generate_sitemap, APIException
@@ -11,18 +8,20 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 import os
 import requests
 import base64
+import stripe
 
-api = Blueprint('api', __name__)
+# pk_test_51QtocuCZ14sPuAqBEZ5lyRH3RhWmWEz9lBbLzJ8gHRYhajmIw7me5Nb0KisiyfYKAL6yL7U8eOj5HGW88ZqyPOko00MmFPKHZB
 
-# api.config["JWT_SECRET_KEY"] = "txamanguillo"  
-# jwt = JWTManager(api)
+
 CLOUD_NAME = os.environ.get("CLOUDINARY_CLOUD_NAME", "dmo7oubln")
 API_KEY = os.environ.get("CLOUDINARY_API_KEY", "525655867213797")
 API_SECRET = os.environ.get("CLOUDINARY_API_SECRET", "vs0x8sROaO_77RaoO2L8sZm4BQM")
 FOLDER_NAME = "products"
 
+api = Blueprint('api', __name__)
 
-# Allow CORS requests to this API
+stripe.apy_key = "sk_test_51QtocuCZ14sPuAqB37UVZKAg0rKQ8zpRSXKQHi0CnJabEpSsqJFMmIk4SbqQvv42pYXGDRvjyKE2FNG09n7CK6m100Yw94nu2z"
+                    
 CORS( api )
 
 @api.route("signup", methods=["POST"])
@@ -140,5 +139,23 @@ def get_cart():
     serialized_cart = [c.serialize() for c in carts]
     # Retornamos una lista, incluso si está vacía.
     return jsonify(serialized_cart), 200
+
+# @api.route('/create-payment', method=['POST'])
+# def create_payment():
+#     try:
+#         data = request.json
+#         intent = stripe.PaymentInteny.create(
+#             amount = data['amount'],
+#             currency = data['currency'],
+#             automatic_payment_methods={
+#                 'enabled': True
+#             }
+#         )
+#         return jsonify({
+#             'clientSecret' : Intent['client_secret']
+#         })
+#     except Exception as e:
+#         return jsonify({'seccess': False, 'error': str(e)})
+
     
 

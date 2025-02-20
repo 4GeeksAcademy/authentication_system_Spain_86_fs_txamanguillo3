@@ -22,28 +22,21 @@ import { Loader } from "./component/loader.js";
 import { CartProvider } from "./store/carritoContext.js";
 
 import { ProtectedRoute } from "./pages/session.jsx";
-
 import { CloudinaryImage } from "./pages/cloudinary.jsx";
-
 //create your first component
 const Layout = () => {
-
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
     // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
-
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
     console.log("Backend URL:", process.env.BACKEND_URL);
-
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsLoading(false);
         }, 1500);
-
         return () => clearTimeout(timer);
     }, []);
-
     return (
 
         <Fade>
@@ -75,5 +68,4 @@ const Layout = () => {
 
     );
 };
-
 export default injectContext(Layout);
