@@ -10,7 +10,6 @@ import requests
 import base64
 import stripe
 
-# pk_test_51QtocuCZ14sPuAqBEZ5lyRH3RhWmWEz9lBbLzJ8gHRYhajmIw7me5Nb0KisiyfYKAL6yL7U8eOj5HGW88ZqyPOko00MmFPKHZB
 
 
 CLOUD_NAME = os.environ.get("CLOUDINARY_CLOUD_NAME", "dmo7oubln")
@@ -20,7 +19,7 @@ FOLDER_NAME = "products"
 
 api = Blueprint('api', __name__)
 
-stripe.apy_key = "sk_test_51QtocuCZ14sPuAqB37UVZKAg0rKQ8zpRSXKQHi0CnJabEpSsqJFMmIk4SbqQvv42pYXGDRvjyKE2FNG09n7CK6m100Yw94nu2z"
+stripe.api_key = "sk_test_51QtocuCZ14sPuAqB37UVZKAg0rKQ8zpRSXKQHi0CnJabEpSsqJFMmIk4SbqQvv42pYXGDRvjyKE2FNG09n7CK6m100Yw94nu2z"
                     
 CORS( api )
 
@@ -140,22 +139,20 @@ def get_cart():
     # Retornamos una lista, incluso si está vacía.
     return jsonify(serialized_cart), 200
 
-# @api.route('/create-payment', method=['POST'])
-# def create_payment():
-#     try:
-#         data = request.json
-#         intent = stripe.PaymentInteny.create(
-#             amount = data['amount'],
-#             currency = data['currency'],
-#             automatic_payment_methods={
-#                 'enabled': True
-#             }
-#         )
-#         return jsonify({
-#             'clientSecret' : Intent['client_secret']
-#         })
-#     except Exception as e:
-#         return jsonify({'seccess': False, 'error': str(e)})
+@api.route('/create-payment', methods=['POST'])
+def create_payment():
+    response_body = {}
+    try:
+        data = request.json
+        intent = stripe.PaymentIntent.create(amount=data['amount'],
+                                             currency=data['currency'],
+                                             automatic_payment_methods={'enabled': True})
+        response_body['client_secret'] = intent['client_secret']
+        return response_body, 200
+    except Exception as e:
+        response_body['success'] = False
+        response_body['error'] = str(e)
+        return response_body, 403
 
     
 

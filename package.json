@@ -77,6 +77,7 @@
 		"@cloudinary/url-gen": "^1.21.0",
 		"@react-spring/web": "^9.5.5",
 		"@stripe/react-stripe-js": "^3.1.1",
+		"@stripe/stripe-js": "^5.6.0",
 		"bootstrap": "^5.3.3",
 		"buffer": "^6.0.3",
 		"prop-types": "^15.6.1",
