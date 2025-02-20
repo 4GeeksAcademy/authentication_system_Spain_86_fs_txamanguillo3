@@ -15,6 +15,8 @@ import { Tienda } from "./pages/tienda.jsx";
 import { Profile } from "./pages/protected/profile.jsx";
 import { Favorites } from "./pages/protected/favorites.jsx";
 import { Cart } from "./pages/cart.jsx";
+import { Checkout } from "./pages/protected/checkout.jsx";
+import { Payment } from "./pages/protected/payment.jsx";
 import { Fade } from "react-reveal";
 import { TopNavbar } from "./component/topNavbar.js";
 import { Slidetobuy } from "./pages/Slidetobuy.jsx";
@@ -57,6 +59,8 @@ const Layout = () => {
                             <Route path="/session" element={<ProtectedRoute />}>
                                 <Route path="profile" element={<Profile />} />
                                 <Route path="favorites" element={<Favorites />} />
+                                <Route path="checkout" element={<Checkout />} />
+                                <Route path="payment" element={<Payment />} />
                             </Route>
                             <Route path="admin" element={<ExportProductImage />} />
                             <Route element={<h1>Not found!</h1>} />

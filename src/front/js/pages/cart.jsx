@@ -1,27 +1,30 @@
 import React, {useContext} from 'react'
 import { Context } from '../store/appContext'
 import { Product } from '../component/product'
+import { Link } from 'react-router-dom'
 
 export const Cart = () => {
 
   const {store, action} = useContext(Context);
 
-  return (
+  return (<>
     <div className='cart-container'>
       <h2> Tu Carrito </h2>
-      { store.cart.length === 0 ? (
-        <span>Tu carrito está vacío</span>
-      ) : (
-        <>
-        {store.cart.map(product => {
-          return (
-            <Product product={product}/>
-          )
-        })}
-        </>
-      )
-    }
-    
+        { store.cart.length === 0 ? (
+          <span>Tu carrito está vacío</span>
+        ) : (
+          <>
+          {store.cart.map(product => {
+            return (
+              <Product product={product}/>
+            )
+          })}
+          </>
+        )
+      }
+      <Link to="/session/checkout">
+        <h1>Checkout</h1>
+      </Link>
     </div>
-  )
+  </>)
 }
