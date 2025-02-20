@@ -14,11 +14,12 @@ import AddProductForm from "./pages/AddProductForm.jsx";
 import { Tienda } from "./pages/tienda.jsx";
 import { Profile } from "./pages/protected/profile.jsx";
 import { Favorites } from "./pages/protected/favorites.jsx";
-import { Cart } from "./pages/protected/cart.jsx";
+import { Cart } from "./pages/cart.jsx";
 import { Fade } from "react-reveal";
 import { TopNavbar } from "./component/topNavbar.js";
 import { Slidetobuy } from "./pages/Slidetobuy.jsx";
 import { Loader } from "./component/loader.js";
+import { CartProvider } from "./store/carritoContext.js";
 
 import { ProtectedRoute } from "./pages/session.jsx";
 
@@ -44,11 +45,12 @@ const Layout = () => {
     }, []);
 
     return (
+
         <Fade>
             <div>
-                <TopNavbar />
                 <BrowserRouter basename={basename}>
                     <ScrollToTop>
+                    <TopNavbar />
                         <Routes>
                             <Route element={<Home />} path="/" />
                             <Route element={<SignUp />} path="/signup" />
@@ -56,12 +58,12 @@ const Layout = () => {
                             <Route element={<Slidetobuy />} path="/slidetobuy" />
                             <Route element={<Tienda />} path="/tienda" />
                             <Route element={<AboutUs />} path="/aboutUs" />
+                            <Route element={<Cart />}  path="/cart" />
                             <Route element={<CloudinaryImage />} path="/cloudinary" />
                             <Route element={<AddProductForm />} path="/add-product" />
                             <Route path="/session" element={<ProtectedRoute />}>
                                 <Route path="profile" element={<Profile />} />
                                 <Route path="favorites" element={<Favorites />} />
-                                <Route path="cart" element={<Cart />} />
                             </Route>
                             <Route path="admin" element={<ExportProductImage />} />
                             <Route element={<h1>Not found!</h1>} />
@@ -70,6 +72,7 @@ const Layout = () => {
                 </BrowserRouter>
             </div>
         </Fade>
+
     );
 };
 

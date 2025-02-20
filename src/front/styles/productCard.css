@@ -1,9 +1,14 @@
 .product-card {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   gap: 15px;                
   padding: 20px;
+}
+
+.product-card-list{
+  display: flex;
+  justify-content: space-between;
+  padding: 5vh;
 }
 
 .product {
@@ -25,9 +30,6 @@
   outline: none;
 }
 
-.product:active {
-  animation: wiggle 0.5s ease;
-}
 
 @keyframes wiggle {
   0% { transform: translateY(-5px) rotate(0deg); }
@@ -74,9 +76,15 @@
   font-weight: bold;
   color: #333;
 }
+
+.addTooCart {
+  display: flex;
+  align-self: center;
+}
+
 @media (max-width: 768px) {
   .product {
-    max-width: 90%;
+    max-width: 65%;
   }
   .product-title {
     font-size: 1.1rem;

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import "../../styles/productCard.css";
 import { Context } from '../store/appContext';
 import { Product } from '../component/product';
+import { useCart } from '../store/appContext';
 
 
 export const ProductCards = () => {
