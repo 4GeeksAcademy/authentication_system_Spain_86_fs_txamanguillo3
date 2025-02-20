@@ -1,26 +1,27 @@
 .navbarTop {
   display: flex;
-  justify-content: center;
   background-color: #DFF2E9;
-}
-.button1 {
-  background-color: #eef07a;
-  border-radius: 5px;
-  border: #DFF2E9;
-  color: #00444E;
-  font-weight: 600;
+  padding: 3vh;
 }
 
-.button1:hover {
-  background-color: #00444E;
-  border-radius: 5px;
+.searcher {
+}
+
+.searcherImput {
+  width: 150px;
+}
+
+.searchButton {
+  background-color: #DFF2E9;
   border: #DFF2E9;
-  color: #eef07a;
-  font-weight: 600;
 }
 
 #navbarScroll{
+  margin-left: 10vh;
   font-weight: 800;
+}
+
+.menu {
 }
 
 .linkButtom:hover {
@@ -29,10 +30,44 @@
   border-radius: 10px;
 }
 
-.searchButton {
-  background-color: #DFF2E9;
+.button1 {
+  background-color: #eef07a;
+  border-radius: 5px;
   border: #DFF2E9;
+  color: #00444E;
+  font-weight: 800;
 }
+
+.userButtoms{
+  display: flex;
+  gap: 2vh;
+}
+
+.button1:hover {
+  background-color: #00444E;
+  border-radius: 5px;
+  border: #DFF2E9;
+  color: #eef07a;
+  font-weight: 800;
+}
+
+.buttonCart {
+  background-color: #eef07a;
+  border-radius: 5px;
+  border: #DFF2E9;
+  color: #00444E;
+  font-weight: 600;
+}
+
+.buttonCart:hover {
+  background-color: #00444E;
+  border-radius: 5px;
+  border: #DFF2E9;
+  color: #eef07a;
+  font-weight: 600;
+}
+
+
 
   @media (max-width: 768px) {
   }

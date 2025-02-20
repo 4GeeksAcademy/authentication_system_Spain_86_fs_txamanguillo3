@@ -1,3 +1,10 @@
 .shop {
+    display: flex;
+    flex-direction: column;
     background-color: #F0F2F1;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
 }

@@ -35,7 +35,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				},
 			],
 			profile: null,
-			productList: []
+			productList: [],
+			cart: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -112,6 +113,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				const data = await response.json();
 				return data;
+			},
+			agregarAlCarrito: (product) => {
+				const {cart} = getStore()
+				
+				const yaExisteElProducto = cart.findIndex(
+					(articulo) => articulo.id === product.id
+				);
+				if(yaExisteElProducto >= 0) {
+					const carritoActualizado = [...cart];
+					carritoActualizado[yaExisteElProducto].cantidad += 1;
+				    setStore({cart: carritoActualizado});
+				} else {
+					setStore({cart: [...cart, {...product, cantidad: 1}]}); 
+				}
 			}
 		}
 	};
