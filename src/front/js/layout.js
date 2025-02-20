@@ -20,6 +20,7 @@ import { TopNavbar } from "./component/topNavbar.js";
 import { Slidetobuy } from "./pages/Slidetobuy.jsx";
 import { Loader } from "./component/loader.js";
 import { CartProvider } from "./store/carritoContext.js";
+
 import { ProtectedRoute } from "./pages/session.jsx";
 import { CloudinaryImage } from "./pages/cloudinary.jsx";
 //create your first component
@@ -37,6 +38,7 @@ const Layout = () => {
         return () => clearTimeout(timer);
     }, []);
     return (
+
         <Fade>
             <div>
                 <BrowserRouter basename={basename}>
@@ -63,6 +65,7 @@ const Layout = () => {
                 </BrowserRouter>
             </div>
         </Fade>
+
     );
 };
 export default injectContext(Layout);
