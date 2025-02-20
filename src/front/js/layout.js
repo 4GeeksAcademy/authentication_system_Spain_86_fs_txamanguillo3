@@ -59,7 +59,7 @@ const Layout = () => {
                             <Route path="/session" element={<ProtectedRoute />}>
                                 <Route path="profile" element={<Profile />} />
                                 <Route path="favorites" element={<Favorites />} />
-                                <Route path="checkout" element={<Checkout />} />
+                                {/* <Route path="checkout" element={<Checkout />} /> */}
                                 <Route path="payment" element={<Payment />} />
                             </Route>
                             <Route path="admin" element={<ExportProductImage />} />
