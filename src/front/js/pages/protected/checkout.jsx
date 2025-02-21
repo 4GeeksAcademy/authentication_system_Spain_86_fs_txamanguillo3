@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from "react";
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { useNavigate } from 'react-router-dom';
 
 
 export const Checkout = () => {
+    const navigate = useNavigate();
     const stripe = useStripe();
     const elements = useElements();
     const [clientSecret, setClientSecret] = useState('');
@@ -39,6 +41,8 @@ export const Checkout = () => {
         console.log('[error]', error);
       } else if (paymentIntent.status === 'succeeded') {
         console.log('Payment succeeded!');
+        navigate('/session/succeeded');
+        
       }
       else{
         console.log('some error')

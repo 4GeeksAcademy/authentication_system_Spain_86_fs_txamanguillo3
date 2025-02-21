@@ -6,6 +6,7 @@ import { Loader } from "../component/loader";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
 import { Footer } from '../component/footer';
+import { Link } from "react-router-dom";
 
 export const Login = () => {
   const [error, setError] = useState(null);
@@ -74,6 +75,7 @@ export const Login = () => {
           />
           {error && <p className="error">{error}</p>}
           <Button className="button1" type="submit"> Entrar </Button>
+          <Button className='button1' as={Link} to='/signup'>¿No tienes una cuenta? ¡Regístrate!</Button>
         </form>
       </section>
     </>

@@ -22,7 +22,7 @@ export const Cart = () => {
           </>
         )
       }
-      <Link to="/session/checkout">
+      <Link to="/session/payment">
         <h1>Checkout</h1>
       </Link>
     </div>
