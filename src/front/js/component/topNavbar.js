@@ -14,7 +14,7 @@ export const TopNavbar = () => {
     const navigate = useNavigate();
 
     const handleCartClick = () => {
-        navigate('/cart')
+        navigate('/slidetobuy')
     }
 
     return (
@@ -42,7 +42,7 @@ export const TopNavbar = () => {
                     <Button className='button1' as={Link} to='/signup'>Regístrate</Button>
                 </div>
             </Navbar.Collapse>
-            <Button className='buttonCart' onClick={handleCartClick}><i class="fa-solid fa-cart-shopping"></i><span >{store.cart.length}</span></Button>
+            <Button className='buttonCart' onClick={handleCartClick}><i class="fa-solid fa-cart-shopping"></i>&nbsp;<span >{store.cart.length}</span></Button>
         </Navbar>
     )
 }

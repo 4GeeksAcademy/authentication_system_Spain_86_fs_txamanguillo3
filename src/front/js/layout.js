@@ -50,10 +50,10 @@ const Layout = () => {
                             <Route element={<Home />} path="/" />
                             <Route element={<SignUp />} path="/signup" />
                             <Route element={<Login />} path="/login" />
-                            <Route element={<Slidetobuy />} path="/slidetobuy" />
                             <Route element={<Tienda />} path="/tienda" />
                             <Route element={<AboutUs />} path="/aboutUs" />
                             <Route element={<Cart />}  path="/cart" />
+                            <Route element={<Slidetobuy />}  path="/slidetobuy" />
                             <Route element={<CloudinaryImage />} path="/cloudinary" />
                             <Route element={<AddProductForm />} path="/add-product" />
                             <Route path="/session" element={<ProtectedRoute />}>

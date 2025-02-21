@@ -3,6 +3,7 @@ import { Loader } from "../component/loader";
 import Tinderslider from '../component/tinderSlider';
 import { Footer } from '../component/footer';
 import { Context } from '../store/appContext';
+import { Link } from 'react-router-dom';
 
 
 
@@ -25,8 +26,10 @@ export const Slidetobuy = () => {
 
   return (isLoading) ? <Loader /> : (
     <>
-    <Tinderslider productList={store.productList}/>
-    <Footer />
+      <h4>!Pruebe nuestro novedoso carrito "Tinder"¡</h4>
+      <h4>O pulse&nbsp;<Link to="/session/payment"><strong>aquí</strong></Link>&nbsp;para ir directamente al carrito y efectuar el pago</h4>
+      <Tinderslider productList={store.productList}/>
+      <Footer />
     </>
   )
 }
