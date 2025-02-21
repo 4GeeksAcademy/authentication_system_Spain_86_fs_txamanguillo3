@@ -1,0 +1,79 @@
+# Query: session
+# ContextLines: 1
+
+20 resultados - Archivos de 10
+
+src/api/admin.py:
+  13      # Add your models here, for example this is how we add a the User model to the admin
+  14:     admin.add_view(ModelView(User, db.session))
+  15:     admin.add_view(ModelView(Product, db.session))
+  16  
+  17      # You can duplicate that line to add mew models
+  18:     # admin.add_view(ModelView(YourModelName, db.session))
+
+src/api/commands.py:
+  25              user.is_active = True
+  26:             db.session.add(user)
+  27:             db.session.commit()
+  28              print("User: ", user.email, " created.")
+
+src/api/routes.py:
+   34          new_user = User(email=email, password=password, is_active=True)
+   35:         db.session.add(new_user)
+   36:         db.session.commit()
+   37          return jsonify({"msg": "usuario creado"}), 200
+
+   80  
+   81:     db.session.commit()
+   82  
+
+  103          )
+  104:         db.session.add(new_product)
+  105:         db.session.commit()
+  106          return jsonify({
+
+  110      except Exception as e:
+  111:         db.session.rollback()
+  112          return jsonify({"error": str(e)}), 400
+
+src/front/js/layout.js:
+  25  
+  26: import { ProtectedRoute } from "./pages/session.jsx";
+  27  import { CloudinaryImage } from "./pages/cloudinary.jsx";
+
+  58                              <Route element={<AddProductForm />} path="/add-product" />
+  59:                             <Route path="/session" element={<ProtectedRoute />}>
+  60                                  <Route path="profile" element={<Profile />} />
+
+src/front/js/component/topNavbar.js:
+  16      const handleCartClick = () => {
+  17:         navigate('/slidetobuy')
+  18      }
+
+src/front/js/pages/cart.jsx:
+  24        }
+  25:       <Link to="/session/">
+  26          <h1>Checkout</h1>
+  27        </Link>
+  28:       <Link to="/session/payment">
+  29          <h1>Checkout</h1>
+
+src/front/js/pages/login.jsx:
+  23      if (isLoged) {
+  24:       navigate("/session/profile");
+  25      } else {
+
+src/front/js/pages/session.jsx:
+  6  export const ProtectedRoute = () => {
+  7:   const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+  8    const isAuthenticated = token !== null && token !== undefined && token !== "";
+
+src/front/js/pages/Slidetobuy.jsx:
+  29        <h4>!Pruebe nuestro novedoso carrito "Tinder"¡</h4>
+  30:       <h4>O pulse&nbsp;<Link to="/session/payment"><strong>aquí</strong></Link>&nbsp;para ir directamente al carrito</h4>
+  31        <Tinderslider productList={store.productList}/>
+
+src/front/js/pages/protected/checkout.jsx:
+  43  //         console.log('Payment succeeded!');
+  44: //         navigate('/session/succeeded');
+  45          
