@@ -7,7 +7,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { Context } from '../store/appContext';
 
+
 export const TopNavbar = () => {
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+    const isAuthenticated = token !== null && token !== undefined && token !== "";
     
     const {store, actions} = useContext(Context);
 
@@ -37,10 +40,16 @@ export const TopNavbar = () => {
                         <Nav.Link className='linkButtom' as={Link} to="/aboutUs">About us</Nav.Link>
                         <Nav.Link className='linkButtom' as={Link} to=""></Nav.Link>
                     </Nav>
-                <div className='userButtoms'>
-                    <Button className='button1' as={Link} to='/login' >Log in</Button>
-                    <Button className='button1' as={Link} to='/signup'>Regístrate</Button>
-                </div>
+                {isAuthenticated ? (
+                    <div className='userButtoms'>
+                        <Button className='button1' as={Link} to='/session/profile' >Profile</Button>
+                    </div>
+                    ) : (
+                    <div className='userButtoms'>
+                        <Button className='button1' as={Link} to='/login' >Log in</Button>
+                        <Button className='button1' as={Link} to='/signup'>Regístrate</Button>
+                    </div>
+                    )}
             </Navbar.Collapse>
             <Button className='buttonCart' onClick={handleCartClick}><i class="fa-solid fa-cart-shopping"></i>&nbsp;<span >{store.cart.length}</span></Button>
         </Navbar>
