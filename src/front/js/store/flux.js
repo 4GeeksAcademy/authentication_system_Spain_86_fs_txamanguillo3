@@ -36,7 +36,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			profile: null,
 			productList: [],
-			cart: []
+			cart: [],
+			totalCartAmount: 0
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -125,8 +126,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					carritoActualizado[yaExisteElProducto].cantidad += 1;
 				    setStore({cart: carritoActualizado});
 				} else {
-					setStore({cart: [...cart, {...product, cantidad: 1}]}); 
+					setStore({cart: [...cart, {...product, cantidad: 1}]});	 
 				}
+				const actions = getActions()
+				actions.updateCartTotalAmount()
+			},
+			updateCartTotalAmount: () => {
+				const store = getStore()
+				const cartTotalAmount = store.cart.reduce((acc, product) => {
+					acc = (product.price * product.cantidad) + acc
+					return acc
+				}, 0)
+				setStore({...store, cartTotalAmount})
 			}
 		}
 	};

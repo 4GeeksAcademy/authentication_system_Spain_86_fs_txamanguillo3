@@ -25,6 +25,7 @@ export const Cart = () => {
       <Link to="/session/payment">
         <h1>Checkout</h1>
       </Link>
+      <h3>{store.cartTotalAmount}</h3>
     </div>
   </>)
 }
