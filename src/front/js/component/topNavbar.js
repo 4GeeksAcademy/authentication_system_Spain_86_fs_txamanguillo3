@@ -38,7 +38,6 @@ export const TopNavbar = () => {
                         <Nav.Link className='linkButtom' as={Link} to="/slidetobuy">Slide to Buy</Nav.Link>
                         <Nav.Link className='linkButtom' as={Link} to="/tienda">Tienda</Nav.Link>
                         <Nav.Link className='linkButtom' as={Link} to="/aboutUs">About us</Nav.Link>
-                        <Nav.Link className='linkButtom' as={Link} to=""></Nav.Link>
                     </Nav>
                 {isAuthenticated ? (
                     <div className='userButtoms'>

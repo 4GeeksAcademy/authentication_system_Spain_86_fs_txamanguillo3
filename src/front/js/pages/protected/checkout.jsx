@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from "@stripe/react-stripe-js";
 import { FaCcVisa, FaCcMastercard, FaRegCreditCard, BsCalendarDate} from "react-icons/fa6";
+import { Context } from "../../store/appContext";
+import { useNavigate } from "react-router-dom";
 
 
 
 export const Checkout = () => {
+  const {store, actions} = useContext(Context)
+
+  const navigate = useNavigate()
 
   const stripe = useStripe();
   const elements = useElements();
@@ -15,7 +20,7 @@ export const Checkout = () => {
     fetch(`${process.env.BACKEND_URL}/api/create-payment`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount: 1000, currency: 'usd' })
+      body: JSON.stringify({ amount: store.cartTotalAmount * 100, currency: 'usd' })
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.client_secret));
@@ -40,6 +45,7 @@ export const Checkout = () => {
       console.log('[error]', error);
     } else if (paymentIntent.status === 'succeeded') {
       console.log('Payment succeeded!');
+      navigate('/session/succeeded')
     } else {
       console.log('some error');
     }
@@ -47,7 +53,7 @@ export const Checkout = () => {
 
   return (<>
     <form className="w-80 bg-white p-6 rounded-lg shadow-lg mx-auto space-y-4" onSubmit={handleSubmit}>
-      <p>precio (vamos david por favor)</p>
+      <p>Precio: {store.cartTotalAmount} $ <i class="fa-solid fa-sack-dollar fa-bounce"></i></p>
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">Card Number</label>&nbsp;
         <FaCcVisa style={{fontSize:"30px", color:"blue"}}/>&nbsp;<FaCcMastercard style={{fontSize:"30px", color:"red"}}/>
