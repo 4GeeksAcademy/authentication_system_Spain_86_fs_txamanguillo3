@@ -49,13 +49,14 @@ export const TopNavbar = () => {
             </form>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
-                <Nav className='menu'>
-                    <Nav.Link className='linkButtom' as={Link} to="/">Home</Nav.Link>
-                    <Nav.Link className='linkButtom' as={Link} to="/slidetobuy">Slide to Buy</Nav.Link>
-                    <Nav.Link className='linkButtom' as={Link} to="/tienda">Tienda</Nav.Link>
-                    <Nav.Link className='linkButtom' as={Link} to="/aboutUs">About us</Nav.Link>
-                    <Nav.Link className='linkButtom' as={Link} to=""></Nav.Link>
-                </Nav>
+
+                    <Nav className='menu'>
+                        <Nav.Link className='linkButtom'as={Link} to="/">Home</Nav.Link>
+                        <Nav.Link className='linkButtom' as={Link} to="/slidetobuy">Slide to Buy</Nav.Link>
+                        <Nav.Link className='linkButtom' as={Link} to="/tienda">Tienda</Nav.Link>
+                        <Nav.Link className='linkButtom' as={Link} to="/aboutUs">About us</Nav.Link>
+                    </Nav>
+
                 {isAuthenticated ? (
                     <div className='userButtoms'>
                         <Button className='button1' as={Link} to='/session/profile' >Profile</Button>
