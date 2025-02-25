@@ -1,27 +1,67 @@
 .navbarTop {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #DFF2E9;
-  padding: 3vh;
+  padding: 1.5vh 4vw;
+  flex-wrap: wrap;
 }
 
 .searcher {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  max-width: 200px;
+  width: 100%;
+  height: 36px;
+  padding: 2px 8px;
+  transition: all 0.3s ease-in-out;
+  position: relative;
 }
 
 .searcherImput {
-  width: 150px;
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 6px;
+  font-size: 13px;
+  color: #333;
+  background: transparent;
+  width: 100%;
+}
+
+.searcherImput::placeholder {
+  color: #aaa;
+  font-size: 12px;
 }
 
 .searchButton {
-  background-color: #DFF2E9;
-  border: #DFF2E9;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  position: absolute;
+  right: 8px;
 }
 
-#navbarScroll{
-  margin-left: 10vh;
+.searchButton i {
+  font-size: 14px;
+  color: #00444E;
+}
+
+.searchButton:hover {
+  transform: scale(1.1);
+  color: #007bff;
+}
+
+#navbarScroll {
+  margin-left: 8vh;
   font-weight: 800;
-}
-
-.menu {
 }
 
 .linkButtom:hover {
@@ -30,49 +70,82 @@
   border-radius: 10px;
 }
 
+.userButtoms {
+  display: flex;
+  gap: 1.5vh;
+}
+
 .button1 {
   background-color: #eef07a;
   border-radius: 5px;
-  border: #DFF2E9;
+  border: none;
   color: #00444E;
   font-weight: 800;
-}
-
-.userButtoms{
-  display: flex;
-  gap: 2vh;
+  padding: 6px 12px;
+  font-size: 13px;
 }
 
 .button1:hover {
   background-color: #00444E;
-  border-radius: 5px;
-  border: #DFF2E9;
   color: #eef07a;
-  font-weight: 800;
 }
 
 .buttonCart {
   background-color: #eef07a;
   border-radius: 5px;
-  border: #DFF2E9;
+  border: none;
   color: #00444E;
   font-weight: 600;
+  padding: 6px 12px;
+  font-size: 13px;
 }
 
 .buttonCart:hover {
   background-color: #00444E;
-  border-radius: 5px;
-  border: #DFF2E9;
   color: #eef07a;
-  font-weight: 600;
 }
 
-
-
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
+  .navbarTop {
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5vh;
   }
 
-  
-  @media (max-width: 480px) {
-    
+  .searcher {
+    max-width: 160px;
   }
+
+  .searcherImput {
+    font-size: 11px;
+  }
+
+  .searchButton i {
+    font-size: 11px;
+  }
+
+  .button1, .buttonCart {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .searcher {
+    max-width: 140px;
+    padding: 2px 8px;
+  }
+
+  .searcherImput {
+    font-size: 10px;
+  }
+
+  .searchButton i {
+    font-size: 10px;
+  }
+
+  .buttonCart {
+    font-size: 11px;
+    padding: 5px;
+  }
+}
