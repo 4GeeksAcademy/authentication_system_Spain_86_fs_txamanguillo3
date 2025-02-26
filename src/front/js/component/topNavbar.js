@@ -29,7 +29,7 @@ export const TopNavbar = () => {
     }, [searchTerm]); 
 
     const handleCartClick = () => {
-        navigate('/session/payment');
+        navigate('/slidetobuy');
     };
 
     return (
