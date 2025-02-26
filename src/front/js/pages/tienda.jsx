@@ -14,24 +14,19 @@ export const Tienda = () => {
 
   const img = cld
     .image('cld-sample-5')
-    .format('auto') // Optimize delivery by resizing and applying auto-format and auto-quality
+    .format('auto')
     .quality('auto')
-    .resize(auto().gravity(autoGravity()).width(500).height(500)); // Transform the image: auto-crop to square aspect_ratio
+    .resize(auto().gravity(autoGravity()).width(500).height(500));
 
   const [isLoading, setIsLoading] = useState(false);
   const { store, actions } = useContext(Context);
-  
-  useEffect(() => {
-    setIsLoading(true);
-    
-    // Verifica si ya hay productos cargados para evitar llamadas innecesarias
-    if (store.productList.length === 0) {
-        actions.getProductList().finally(() => setIsLoading(false));
-    } else {
-        setIsLoading(false);
-    }
 
-}, []);
+  useEffect(() => {
+    if (store.productList.length === 0) {
+      setIsLoading(true);
+      actions.getProductList().finally(() => setIsLoading(false));
+    }
+  }, []);
 
   return (isLoading) ? <Loader /> : (
     <>
@@ -40,13 +35,10 @@ export const Tienda = () => {
         <br />
         <h2 className=''>Productos</h2>
         <div className="product-card-list">
-          {store.filteredProducts && store.filteredProducts.length > 0 ? (
-            store.filteredProducts.map((product) => (
-              <ProductCards products={store.filteredProducts} />
-            ))
-          ) : (
-            <p>No se encontraron productos</p>
-          )}
+          {store.filteredProducts.length > 0
+            ? <ProductCards products={store.filteredProducts} />
+            : <ProductCards products={store.productList} />
+          }
         </div>
       </div>
       <Footer />

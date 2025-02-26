@@ -11,6 +11,7 @@ import injectContext from "./store/appContext";
 import { Footer } from "./component/footer";
 import { Home } from "./pages/home.jsx";
 import AddProductForm from "./pages/AddProductForm.jsx";
+import AddPromotionForm from "./pages/AddPromotionForm.jsx";
 import { Tienda } from "./pages/tienda.jsx";
 import { Profile } from "./pages/protected/profile.jsx";
 import { Favorites } from "./pages/protected/favorites.jsx";
@@ -62,6 +63,7 @@ const Layout = () => {
                                 <Route path="payment" element={<Payment />} />
                                 <Route path="succeeded" element={<Succeeded />} />
                             </Route>
+                            <Route path="/admin/promotions" element={<AddPromotionForm />} />
                             <Route path="admin" element={<ExportProductImage />} />
                             <Route element={<h1>Not found!</h1>} />
                         </Routes>

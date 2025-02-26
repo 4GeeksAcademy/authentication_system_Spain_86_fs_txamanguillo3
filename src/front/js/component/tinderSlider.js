@@ -1,92 +1,107 @@
-import React, { useState, useMemo, useRef } from 'react'
-import TinderCard from 'react-tinder-card'
-import '../../styles/tinderSlider.css'
-import { Product } from './product'
+import React, { useState, useMemo, useRef, useContext, useEffect } from 'react';
+import TinderCard from 'react-tinder-card';
+import '../../styles/tinderSlider.css';
+import { Product } from './product';
+import { Context } from '../store/appContext';
 
-export default function TinderSlider({ productList }) {
-  const [currentIndex, setCurrentIndex] = useState(productList.length - 1)
-  const [lastDirection, setLastDirection] = useState()
-  // used for outOfFrame closure
-  const currentIndexRef = useRef(currentIndex)
+export default function TinderSlider() {
+  const { store, actions } = useContext(Context);
+  const [currentIndex, setCurrentIndex] = useState(null);
+  const currentIndexRef = useRef(currentIndex);
 
-  const childRefs = useMemo(
-    () =>
-      Array(productList.length)
-        .fill(0)
-        .map((i) => React.createRef()),
-    []
-  )
+  useEffect(() => {
+    actions.getPromotionsList();
+  }, []);
 
-  const updateCurrentIndex = (val) => {
-    setCurrentIndex(val)
-    currentIndexRef.current = val
-  }
+  useEffect(() => {
+    if (store.promotionsList.length > 0) {
+      setCurrentIndex(store.promotionsList.length - 1);
+    }
+  }, [store.promotionsList]);
 
-  const canGoBack = currentIndex < productList.length - 1
+  const childRefs = useMemo(() =>
+    store.promotionsList.map(() => React.createRef()), [store.promotionsList]
+  );
 
-  const canSwipe = currentIndex >= 0
-
-  // set last direction and decrease current index
   const swiped = (direction, nameToDelete, index) => {
-    setLastDirection(direction)
-    updateCurrentIndex(index - 1)
-  }
+    setCurrentIndex(index - 1);
+  };
 
   const outOfFrame = (name, idx) => {
-    console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current)
-    // handle the case in which go back is pressed before card goes outOfFrame
-    currentIndexRef.current >= idx && childRefs[idx].current.restoreCard()
-    // TODO: when quickly swipe and restore multiple times the same card,
-    // it happens multiple outOfFrame events are queued and the card disappear
-    // during latest swipes. Only the last outOfFrame event should be considered valid
-  }
+    if (currentIndexRef.current >= idx && childRefs[idx]?.current) {
+      childRefs[idx].current.restoreCard();
+    }
+  };
 
   const swipe = async (dir) => {
-    if (canSwipe && currentIndex < productList.length) {
-      await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
+    if (currentIndex !== null && currentIndex >= 0) {
+      await childRefs[currentIndex].current.swipe(dir);
     }
-  }
+  };
 
-  // increase current index and show card
   const goBack = async () => {
-    if (!canGoBack) return
-    const newIndex = currentIndex + 1
-    updateCurrentIndex(newIndex)
-    await childRefs[newIndex].current.restoreCard()
-  }
+    if (currentIndex !== null && currentIndex < store.promotionsList.length - 1) {
+      const newIndex = currentIndex + 1;
+      setCurrentIndex(newIndex);
+      await childRefs[newIndex].current.restoreCard();
+    }
+  };
+
+  const handleDeletePromotion = async (id) => {
+    const success = await actions.deletePromotion(id);
+    if (success) {
+      setCurrentIndex(prevIndex => Math.max(prevIndex - 1, 0));
+    }
+  };
 
   return (
     <div className='containerBody'>
-      <h1>Slide to Buy</h1>
+      <h1>🔥🔥🔥🔥 Promo del día 🔥🔥🔥🔥</h1>
       <div className='cardContainer'>
-        {productList.map((product, index) => (
-          <TinderCard
-            ref={childRefs[index]}
-            className='swipe'
-            key={product.title}
-            onSwipe={(dir) => swiped(dir, product.title, index)}
-            onCardLeftScreen={() => outOfFrame(product.title, index)}
-          >
-            <Product product={product} />
-          </TinderCard>
-        ))}
-      </div>
-      <div className='buttons'>
-        <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('left')}>Swipe left!</button>
-        <button style={{ backgroundColor: !canGoBack && '#c3c4d3' }} onClick={() => goBack()}>Undo swipe!</button>
-        <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('right')}>Swipe right!</button>
-      </div>
-      <div className='infoText'>
-        {lastDirection ? (
-          <h1 key={lastDirection} className='infoText'>
-            You swiped {lastDirection}
-          </h1>
+        {store.promotionsList.length > 0 ? (
+          store.promotionsList.map((product, index) => (
+            <TinderCard
+              ref={childRefs[index]}
+              className='swipe'
+              key={product.id}
+              onSwipe={(dir) => swiped(dir, product.name, index)}
+              onCardLeftScreen={() => outOfFrame(product.name, index)}
+            >
+              <div className="product-container">
+                <Product product={product} />
+                <button 
+                  className="delete-btn"
+                  onClick={() => handleDeletePromotion(product.id)}
+                >
+                  ❌ Eliminar
+                </button>
+              </div>
+            </TinderCard>
+          ))
         ) : (
-          <h1 className='infoText'>
-            Swipe a card or press a button to get Restore Card button visible!
-          </h1>
+          <p>No hay promociones disponibles</p>
         )}
       </div>
+      <div className='buttons'>
+        <button
+          disabled={currentIndex === null || currentIndex < 0}
+          onClick={() => swipe('left')}
+        >
+          Swipe left!
+        </button>
+        <button
+          disabled={currentIndex === null || currentIndex >= store.promotionsList.length - 1}
+          onClick={() => goBack()}
+        >
+          Undo swipe!
+        </button>
+        <button
+          disabled={currentIndex === null || currentIndex < 0}
+          onClick={() => swipe('right')}
+        >
+          Swipe right!
+        </button>
+      </div>
     </div>
-  )
+  );
 }

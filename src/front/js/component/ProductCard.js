@@ -2,19 +2,12 @@ import React, { useContext, useEffect } from 'react';
 import "../../styles/productCard.css";
 import { Context } from '../store/appContext';
 import { Product } from '../component/product';
-import { useCart } from '../store/appContext';
 
-
-export const ProductCards = () => {
-  const { store, actions } = useContext(Context);
-  useEffect(() => {
-    actions.getProductList();
-  }, []);
-
+export const ProductCards = ({ products }) => {
   return (
     <div className="product-card-list">
-      {store.filteredProducts.length > 0 ? (
-        store.filteredProducts.map((product) => (
+      {products.length > 0 ? (
+        products.map((product) => (
           <Product key={product.id} product={product} />
         ))
       ) : (
