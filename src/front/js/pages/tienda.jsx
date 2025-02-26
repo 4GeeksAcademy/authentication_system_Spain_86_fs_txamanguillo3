@@ -41,6 +41,7 @@ export const Tienda = () => {
           }
         </div>
       </div>
+      <h3></h3>
       <Footer />
     </>
   )

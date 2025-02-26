@@ -39,11 +39,10 @@ export const Product = ({ product, cantidad }) => {
   useEffect(() => {
     let producto = store.cart?.filter((item) => item.id == product.id)
     producto ? setUnidades(producto) : null
-    console.log(store.cart)
   }, [store.cart])
 
   useEffect(() => {
-    console.log(product)
+    
   }, [])
 
 

@@ -4,7 +4,7 @@ import '../../styles/tinderSlider.css';
 import { Product } from './product';
 import { Context } from '../store/appContext';
 
-export default function TinderSlider() {
+export default function TinderSlider({product}) {
   const { store, actions } = useContext(Context);
   const [currentIndex, setCurrentIndex] = useState(null);
   const currentIndexRef = useRef(currentIndex);
@@ -33,11 +33,32 @@ export default function TinderSlider() {
     }
   };
 
-  const swipe = async (dir) => {
+  const swipe = async (dir, product) => {
     if (currentIndex !== null && currentIndex >= 0) {
       await childRefs[currentIndex].current.swipe(dir);
+  
+      if (dir === "right" && product) {
+        actions.agregarAlCarrito(product); 
+      }
+      if (dir === "left" && product){
+        handleReducirCart(product)
+      }
     }
   };
+
+  const handleReducirCart= (product) => {
+    if (!product) return;
+  
+    let nuevoCarrito = store.cart
+      .map((item) =>
+        item.id === product.id ? { ...item, cantidad: item.cantidad - 1 } : item
+      )
+      .filter((item) => item.cantidad > 0); 
+  
+    actions.actualizarCarrito(nuevoCarrito);
+  };
+  
+  
 
   const goBack = async () => {
     if (currentIndex !== null && currentIndex < store.promotionsList.length - 1) {
@@ -53,6 +74,7 @@ export default function TinderSlider() {
       setCurrentIndex(prevIndex => Math.max(prevIndex - 1, 0));
     }
   };
+
 
   return (
     <div className='containerBody'>
@@ -85,7 +107,7 @@ export default function TinderSlider() {
       <div className='buttons'>
         <button
           disabled={currentIndex === null || currentIndex < 0}
-          onClick={() => swipe('left')}
+          onClick={() => swipe('left', store.promotionsList[currentIndex])}
         >
           Swipe left!
         </button>
@@ -97,7 +119,7 @@ export default function TinderSlider() {
         </button>
         <button
           disabled={currentIndex === null || currentIndex < 0}
-          onClick={() => swipe('right')}
+          onClick={() => swipe('right', store.promotionsList[currentIndex])}
         >
           Swipe right!
         </button>

@@ -107,7 +107,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getPromotionsList: async () => {
 				try {
-					console.log("📢 Solicitando promociones desde la API...");
 					const response = await fetch(`${process.env.BACKEND_URL}/api/promotions`, {
 						method: "GET",
 						headers: { "Content-Type": "application/json" }
@@ -118,21 +117,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 
 					const data = await response.json();
-					console.log("📢 Datos recibidos de la API:", data);
-
-					// 🔥 Aseguramos que guardamos solo lo necesario en el estado global
+				
 					const formattedPromotions = data.resources.map(promo => ({
 						id: promo.public_id, // Cloudinary devuelve "public_id" en lugar de "id"
-						name: promo.filename || "Promoción sin nombre",
-						price: 0, // No hay precio en Cloudinary, podrías agregarlo manualmente después
-						description: "Promoción especial", // Puedes cambiar esto si hay una descripción
+						price: Math.floor(Math.random() * 10) + 1, // No hay precio en Cloudinary, podrías agregarlo manualmente después
+						description: "¡Promoción especial!", // Puedes cambiar esto si hay una descripción
 						image_url: promo.secure_url // Usamos "secure_url" para la imagen
 					}));
 
-					console.log("📢 Estado actualizado con promociones:", formattedPromotions);
 					setStore({ ...getStore(), promotionsList: formattedPromotions });
-
 					return formattedPromotions;
+
 				} catch (error) {
 					console.error("Error cargando promociones:", error);
 					setStore({ ...getStore(), promotionsList: [] });
@@ -152,7 +147,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					console.log(`✅ Promoción ${id} eliminada correctamente`);
 
-					// 🔥 Filtra la promoción eliminada y actualiza el estado global
 					const updatedPromotions = getStore().promotionsList.filter(promo => promo.id !== id);
 					setStore({ promotionsList: updatedPromotions });
 

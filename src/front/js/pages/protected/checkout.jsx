@@ -53,7 +53,7 @@ export const Checkout = () => {
 
   return (<>
     <form className="w-80 bg-white p-6 rounded-lg shadow-lg mx-auto space-y-4" onSubmit={handleSubmit}>
-      <p>Precio: {store.cartTotalAmount} $ <i class="fa-solid fa-sack-dollar fa-bounce"></i></p>
+      <p>Precio: {store.cartTotalAmount} € <i class="fa-solid fa-sack-dollar fa-bounce"></i></p>
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">Card Number</label>&nbsp;
         <FaCcVisa style={{fontSize:"30px", color:"blue"}}/>&nbsp;<FaCcMastercard style={{fontSize:"30px", color:"red"}}/>
