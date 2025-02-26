@@ -12,16 +12,19 @@ const AddProductForm = ({ onProductAdded }) => {
   const [description, setDescription] = useState('');
   const [image_url, setImageURL] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+
+  const handleSubmit = async () => {
+  
     const product = {
-      name,
-      price,
-      description,
-      image_url
+      name: name,
+      price: price,
+      description: description,
+      image_url: image_url
     }
     actions.addProduct(product);
   };
+
+
 
   return (
     <div className="add-product-form">

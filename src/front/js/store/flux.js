@@ -131,6 +131,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const actions = getActions()
 				actions.updateCartTotalAmount()
 			},
+			eliminarProducto: () => {
+
+			},
+			actualizarCarrito: (productos) => {
+				setStore({cart: productos})
+			},
 			updateCartTotalAmount: () => {
 				const store = getStore()
 				const cartTotalAmount = store.cart.reduce((acc, product) => {

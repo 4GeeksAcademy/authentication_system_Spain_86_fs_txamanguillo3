@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 import "../../styles/productCard.css";
 import { Context } from '../store/appContext';
 import { Product } from '../component/product';
-import { useCart } from '../store/appContext';
 
 
 export const ProductCards = () => {
@@ -11,11 +10,15 @@ export const ProductCards = () => {
     actions.getProductList();
   }, [])
 
+  useEffect(() => {
+    
+  }, [store.productList])
+
   return (
     <div className="product-card-list">
       {store.productList.map(product => {
         return (
-          <Product product={product}/>
+          <Product product={product} />
         );
       })}
     </div>

@@ -115,7 +115,7 @@ def create_product():
 @api.route('/products', methods=['GET'])
 def import_images_for_products():
     auth = base64.b64encode(f"{API_KEY}:{API_SECRET}".encode("utf-8")).decode("utf-8")
-    url = f"https://api.cloudinary.com/v1_1/{CLOUD_NAME}/resources/image/upload?prefix={FOLDER_NAME}"
+    url = "https://api.cloudinary.com/v1_1/{CLOUD_NAME}/resources/image/upload?prefix={FOLDER_NAME}"
     
     response = requests.get(url, headers={"Authorization": f"Basic {auth}"})
     if response.status_code != 200:

@@ -85,6 +85,12 @@
 
 }
 
+.deleteFomCart {
+    background: #f1f381;
+    border: 5px #00444E;
+    box-shadow: 0px 6px 20px #00444E;
+}
+
 .addTooCart:hover {
     background: #f1f381;
     border: 5px #00444E;
