@@ -6,7 +6,7 @@ import { Product } from '../component/product';
 export const ProductCards = ({ products }) => {
   return (
     <div className="product-card-list">
-      {products.length > 0 ? (
+      {!!products.length && products.length > 0 ? (
         products.map((product) => (
           <Product key={product.id} product={product} />
         ))
