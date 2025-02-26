@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, {useContext, useEffect} from 'react'
 import { Context } from '../store/appContext'
 import { Product } from '../component/product'
 import { Link } from 'react-router-dom'
@@ -6,6 +6,10 @@ import { Link } from 'react-router-dom'
 export const Cart = () => {
 
   const {store, action} = useContext(Context);
+
+  useEffect(() => {
+    console.log(store.cart)
+  }, [store.cart])
 
   return (<>
     <div className='cart-container'>
