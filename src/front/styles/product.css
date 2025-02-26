@@ -13,10 +13,14 @@
     height: 100%;
     min-height: 460px;
     padding: 15px;
+    will-change: transform, box-shadow;
+    opacity: 0;
+    animation: snakeMove 1s ease-out forwards;
 }
 
 .product:hover {
-    transform: translateY(-5px);
+    transform: scale(1.05); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
 }
 
 .product-image-container {
@@ -82,7 +86,6 @@
     text-transform: uppercase;
     cursor: pointer;
     transition: background 0.3s ease-in-out, border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-
 }
 
 .deleteFomCart {
@@ -113,4 +116,35 @@
         max-width: 90%;
         min-height: auto;
     }
+}
+
+
+@keyframes snakeMove {
+    0% {
+        transform: translateX(-100vw) translateY(0);
+        opacity: 0;
+    }
+    25% {
+        transform: translateX(-75vw) translateY(10px);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(-50vw) translateY(-10px);
+    }
+    75% {
+        transform: translateX(-25vw) translateY(10px);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+}
+
+
+.product:nth-child(odd) {
+    animation-delay: calc(0.15s * var(--order));
+}
+
+.product:nth-child(even) {
+    animation-delay: calc(0.15s * var(--order));
 }
