@@ -11,13 +11,13 @@ export const ProductCards = () => {
   }, []);
 
   useEffect(() => {
-
+    console.log(store.productList)
   }, [store.productList])
 
   return (
     <div className="product-card-list">
-      {!!products.length && products.length > 0 ? (
-        products.map((product) => (
+      {!!store.productList.length && store.productList.length > 0 ? (
+        store.productList.map((product) => (
           <Product key={product.id} product={product} />
         ))
       ) : (

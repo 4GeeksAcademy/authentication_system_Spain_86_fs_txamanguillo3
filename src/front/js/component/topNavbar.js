@@ -29,7 +29,7 @@ export const TopNavbar = () => {
     }, [searchTerm]); 
 
     const handleCartClick = () => {
-        navigate('/slidetobuy');
+        navigate('/session/payment');
     };
 
     return (
@@ -68,7 +68,7 @@ export const TopNavbar = () => {
                     </div>
                 )}
             </Navbar.Collapse>
-            <Button className='buttonCart' onClick={handleCartClick}><i class="fa-solid fa-cart-shopping"></i>&nbsp;<span >{store.cart.length}</span></Button>
+            <Button className='buttonCart' onClick={handleCartClick}><i className="fa-solid fa-cart-shopping"></i>&nbsp;<span >{store.cart.length}</span></Button>
         </Navbar>
     )
 }
