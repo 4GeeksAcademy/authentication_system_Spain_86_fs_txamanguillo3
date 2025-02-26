@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Product, Cart
+from api.models import db, User, Product, Cart, Promotion
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
@@ -122,10 +122,56 @@ def import_images_for_products():
         return jsonify({"error": "Error al cargar imágenes"}), response.status_code
 
     data = response.json()
-    # Retorna, por ejemplo, una lista de URLs o la data completa
     return jsonify(data), 200
 
+@api.route('/promotions', methods=['GET'])
+def get_promotions():
+    auth = base64.b64encode(f"{API_KEY}:{API_SECRET}".encode("utf-8")).decode("utf-8")
+    url = f"https://api.cloudinary.com/v1_1/{CLOUD_NAME}/resources/image/upload?prefix=promotions"
+
+    response = requests.get(url, headers={"Authorization": f"Basic {auth}"})
     
+    if response.status_code != 200:
+        return jsonify({"error": "Error al cargar imágenes de promociones"}), response.status_code
+
+    data = response.json()
+    return jsonify(data), 200
+    
+@api.route('promotions', methods=['POST'])
+def create_promotion():
+    data = request.get_json()
+    try:
+        new_promotion = Promotion(
+            name=data.get('name'),
+            price=data.get('price'),
+            description=data.get('description'),
+            image_url=data.get('image_url')
+        )
+        db.session.add(new_promotion)
+        db.session.commit()
+        return jsonify({
+            "msg": "Promotion created successfully",
+            "promotion": new_promotion.serialize()
+        }), 201
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 400
+
+@api.route('promotions/<int:promotion_id>', methods=['DELETE'])
+def delete_promotion(promotion_id):
+    promotion = Promotion.query.get(promotion_id)
+    
+    if not promotion:
+        return jsonify({"error": "Promotion not found"}), 404
+    
+    try:
+        db.session.delete(promotion)
+        db.session.commit()
+        return jsonify({"msg": "Promotion deleted successfully", "deleted_id": promotion_id}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
+
 
 @api.route('cart', methods=['GET'])
 def get_cart():

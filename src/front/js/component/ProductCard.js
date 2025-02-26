@@ -16,8 +16,8 @@ export const ProductCards = () => {
 
   return (
     <div className="product-card-list">
-      {store.filteredProducts.length > 0 ? (
-        store.filteredProducts.map((product) => (
+      {!!products.length && products.length > 0 ? (
+        products.map((product) => (
           <Product key={product.id} product={product} />
         ))
       ) : (

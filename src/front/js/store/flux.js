@@ -36,6 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			profile: null,
 			productList: [],
+			promotionsList: [],
 			filteredProducts: [],
 			cart: [],
 			totalCartAmount: 0
@@ -45,7 +46,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-
 			getMessage: async () => {
 				try {
 					// fetching data from the backend
@@ -105,27 +105,83 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ ...store, productList, filteredProducts: productList });
 				return productList;
 			},
+			getPromotionsList: async () => {
+				try {
+					console.log("📢 Solicitando promociones desde la API...");
+					const response = await fetch(`${process.env.BACKEND_URL}/api/promotions`, {
+						method: "GET",
+						headers: { "Content-Type": "application/json" }
+					});
 
+					if (!response.ok) {
+						throw new Error("Error al obtener las promociones");
+					}
+
+					const data = await response.json();
+					console.log("📢 Datos recibidos de la API:", data);
+
+					// 🔥 Aseguramos que guardamos solo lo necesario en el estado global
+					const formattedPromotions = data.resources.map(promo => ({
+						id: promo.public_id, // Cloudinary devuelve "public_id" en lugar de "id"
+						name: promo.filename || "Promoción sin nombre",
+						price: 0, // No hay precio en Cloudinary, podrías agregarlo manualmente después
+						description: "Promoción especial", // Puedes cambiar esto si hay una descripción
+						image_url: promo.secure_url // Usamos "secure_url" para la imagen
+					}));
+
+					console.log("📢 Estado actualizado con promociones:", formattedPromotions);
+					setStore({ ...getStore(), promotionsList: formattedPromotions });
+
+					return formattedPromotions;
+				} catch (error) {
+					console.error("Error cargando promociones:", error);
+					setStore({ ...getStore(), promotionsList: [] });
+				}
+			},
+
+			deletePromotion: async (id) => {
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/promotions/${id}`, {
+						method: "DELETE",
+						headers: { "Content-Type": "application/json" }
+					});
+
+					if (!response.ok) {
+						throw new Error("Error al eliminar promoción");
+					}
+
+					console.log(`✅ Promoción ${id} eliminada correctamente`);
+
+					// 🔥 Filtra la promoción eliminada y actualiza el estado global
+					const updatedPromotions = getStore().promotionsList.filter(promo => promo.id !== id);
+					setStore({ promotionsList: updatedPromotions });
+
+					return true;
+				} catch (error) {
+					console.error("❌ Error eliminando promoción:", error);
+					return false;
+				}
+			},
 			searchProducts: (searchTerm) => {
 				const store = getStore();
-				
+
 				if (!searchTerm.trim()) {
 					setStore({ filteredProducts: [...store.productList] });
 					return;
 				}
-			
-				const normalizeText = (text) => 
+
+				const normalizeText = (text) =>
 					text?.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-			
+
 				const searchQuery = normalizeText(searchTerm);
-			
+
 				const filtered = store.productList.filter((product) => {
 					const productName = normalizeText(product.title || "");
 					const productDescription = normalizeText(product.description || "");
-			
+
 					return productName.includes(searchQuery) || productDescription.includes(searchQuery);
 				});
-			
+
 				setStore({ filteredProducts: filtered });
 			},
 			addProduct: async (product) => {
@@ -135,6 +191,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(product)
+				});
+				const data = await response.json();
+				return data;
+			},
+			addPromotion: async (promotion) => {
+				const response = await fetch(`${process.env.BACKEND_URL}/api/promotions`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(promotion)
 				});
 				const data = await response.json();
 				return data;

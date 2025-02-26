@@ -13,13 +13,13 @@ export const Product = ({ product, cantidad }) => {
     if (product) {
       actions.agregarAlCarrito({
         id: product.id,
-        imageId: product.imageId,
-        title: product.title,
+        imageId: product.imageId || product.image_url, 
+        name: product.name,
         price: product.price,
         cantidad: product.quantity
       })
     }
-  }
+  };
 
   const handleReducirCarrito = () => {
     let nuevoCarrito = store.cart
@@ -46,10 +46,10 @@ export const Product = ({ product, cantidad }) => {
   return (<>
     <div className="product" key={product.id}>
       <div className="product-image-container">
-        <img src={product.imageId} />
+        <img src={product.imageId || product.image_url} alt={product.name} />
       </div>
       <div className="product-card-body">
-        <h3 className="product-title">{product.title}</h3>
+        <h3 className="product-title">{product.name}</h3>  
         <p className="product-description">{product.description}</p>
         <p className="product-price">{product.price} €</p>
         <p className='product-cuantity'>{unidades.length > 0 && unidades[0]?.cantidad > 0 ? `Cantidad: ${unidades[0].cantidad}` : ""} </p>
@@ -58,5 +58,5 @@ export const Product = ({ product, cantidad }) => {
       <button className='deleteFromCart' onClick={handleReducirCarrito}>Borrar 1</button>
       <button className='deleteCart' onClick={handleBorrarCarrito}><i class="fa-solid fa-diagram-predecessor"></i></button>
     </div>
-  </>)
-}
+  );
+};
