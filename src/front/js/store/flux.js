@@ -36,6 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			profile: null,
 			productList: [],
+			filteredProducts: [],
 			cart: [],
 			totalCartAmount: 0
 		},
@@ -101,8 +102,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				const productList = await response.json();
 				const store = getStore();
-				setStore({ ...store, productList });
+				setStore({ ...store, productList, filteredProducts: productList });
 				return productList;
+			},
+
+			searchProducts: (searchTerm) => {
+				const store = getStore();
+				
+				if (!searchTerm.trim()) {
+					setStore({ filteredProducts: [...store.productList] });
+					return;
+				}
+			
+				const normalizeText = (text) => 
+					text?.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+			
+				const searchQuery = normalizeText(searchTerm);
+			
+				const filtered = store.productList.filter((product) => {
+					const productName = normalizeText(product.title || "");
+					const productDescription = normalizeText(product.description || "");
+			
+					return productName.includes(searchQuery) || productDescription.includes(searchQuery);
+				});
+			
+				setStore({ filteredProducts: filtered });
 			},
 			addProduct: async (product) => {
 				const response = await fetch(`${process.env.BACKEND_URL}/api/products`, {
@@ -116,17 +140,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return data;
 			},
 			agregarAlCarrito: (product) => {
-				const {cart} = getStore()
-				
+				const { cart } = getStore()
+
 				const yaExisteElProducto = cart.findIndex(
 					(articulo) => articulo.id === product.id
 				);
-				if(yaExisteElProducto >= 0) {
+				if (yaExisteElProducto >= 0) {
 					const carritoActualizado = [...cart];
 					carritoActualizado[yaExisteElProducto].cantidad += 1;
-				    setStore({cart: carritoActualizado});
+					setStore({ cart: carritoActualizado });
 				} else {
-					setStore({cart: [...cart, {...product, cantidad: 1}]});	 
+					setStore({ cart: [...cart, { ...product, cantidad: 1 }] });
 				}
 				const actions = getActions()
 				actions.updateCartTotalAmount()
@@ -143,7 +167,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					acc = (product.price * product.cantidad) + acc
 					return acc
 				}, 0)
-				setStore({...store, cartTotalAmount})
+				setStore({ ...store, cartTotalAmount })
 			}
 		}
 	};

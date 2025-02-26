@@ -41,7 +41,7 @@ const Layout = () => {
     }, []);
     return (
 
-        <Fade>
+        <div>
             <div>
                 <BrowserRouter basename={basename}>
                     <ScrollToTop>
@@ -68,7 +68,7 @@ const Layout = () => {
                     </ScrollToTop>
                 </BrowserRouter>
             </div>
-        </Fade>
+        </div>
 
     );
 };
