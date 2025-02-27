@@ -117,7 +117,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 
 					const data = await response.json();
-				
+
 					const formattedPromotions = data.resources.map(promo => ({
 						id: promo.public_id, // Cloudinary devuelve "public_id" en lugar de "id"
 						price: Math.floor(Math.random() * 10) + 1, // No hay precio en Cloudinary, podrías agregarlo manualmente después
@@ -174,9 +174,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const productDescription = normalizeText(product.description || "");
 
 					return productName.includes(searchQuery) || productDescription.includes(searchQuery);
+					
 				});
-
-				setStore({ filteredProducts: filtered });
+				setStore({ ...getStore(), filteredProducts: filtered });		
 			},
 			addProduct: async (product) => {
 				const response = await fetch(`${process.env.BACKEND_URL}/api/products`, {
@@ -220,7 +220,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 			actualizarCarrito: (productos) => {
-				setStore({cart: productos})
+				setStore({ cart: productos })
 			},
 			updateCartTotalAmount: () => {
 				const store = getStore()

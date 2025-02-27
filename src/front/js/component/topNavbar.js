@@ -23,10 +23,11 @@ export const TopNavbar = () => {
     };
 
     useEffect(() => {
-        if (searchTerm.trim() === "" && store.filteredProducts.length !== store.productList.length) {
-            actions.getProductList(); 
+        if (searchTerm.trim() === "") {
+            actions.searchProducts("");
         }
-    }, [searchTerm]); 
+    }, [searchTerm]);
+
 
     const handleCartClick = () => {
         navigate('/slidetobuy');
@@ -50,12 +51,14 @@ export const TopNavbar = () => {
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
 
+
                     <Nav className='menu'>
                         <Nav.Link className='linkButtom'as={Link} to="/">Inicio</Nav.Link>
                         <Nav.Link className='linkButtom' as={Link} to="/slidetobuy">Ofertas</Nav.Link>
                         <Nav.Link className='linkButtom' as={Link} to="/tienda">Tienda</Nav.Link>
                         <Nav.Link className='linkButtom' as={Link} to="/aboutUs">Sobre nosotros</Nav.Link>
                     </Nav>
+
 
                 {isAuthenticated ? (
                     <div className='userButtoms'>

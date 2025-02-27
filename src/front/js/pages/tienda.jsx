@@ -35,11 +35,15 @@ export const Tienda = () => {
         <br />
         <h2 className=''>Productos</h2>
         <div className="product-card-list">
-          {store.filteredProducts.length > 0
-            ? <ProductCards products={store.filteredProducts} />
-            : <ProductCards products={store.productList} />
-          }
+          {store.filteredProducts.length > 0 ? (
+            <ProductCards products={store.filteredProducts} />
+          ) : store.productList.length > 0 ? (
+            <p>No se encontraron productos</p>
+          ) : (
+            <ProductCards products={store.productList} />
+          )}
         </div>
+
       </div>
       <h3></h3>
       <Footer />
