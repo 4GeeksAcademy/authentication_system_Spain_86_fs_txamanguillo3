@@ -13,6 +13,13 @@ h1 {
   text-align: center;
 }
 
+h4 {
+  font-weight: 700;
+  color: #00444E;
+  text-align: center;
+  padding-bottom: 40px;
+}
+
 
 .swipe {
   position: absolute;
