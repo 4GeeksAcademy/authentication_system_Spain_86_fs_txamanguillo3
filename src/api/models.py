@@ -12,7 +12,7 @@ class User(db.Model):
     name = db.Column(db.String(100), nullable=True)  
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    is_admin = db.Column(db.Boolean(), unique=False, nullable=False)
     age = db.Column(db.Integer, nullable=True) 
     location = db.Column(db.String(100), nullable=True)  
     description = db.Column(db.Text, nullable=True)    
@@ -30,6 +30,7 @@ class User(db.Model):
             "location": self.location,
             "description": self.description,
             "profileImage": self.profile_image,
+            "is_admin": self.is_admin,
             # do not serialize the password, its a security breach
         }
     

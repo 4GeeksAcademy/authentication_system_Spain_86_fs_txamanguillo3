@@ -20,6 +20,7 @@ import { Succeeded } from "./pages/protected/succeeded.jsx";
 import { Payment } from "./pages/protected/payment.jsx";
 import { Fade } from "react-reveal";
 import { TopNavbar } from "./component/topNavbar.js";
+import { PrivateRoute } from "./component/PrivateRoute.js";
 import { Slidetobuy } from "./pages/Slidetobuy.jsx";
 import { Loader } from "./component/loader.js";
 import { CartProvider } from "./store/carritoContext.js";
@@ -46,24 +47,26 @@ const Layout = () => {
             <div>
                 <BrowserRouter basename={basename}>
                     <ScrollToTop>
-                    <TopNavbar />
+                        <TopNavbar />
                         <Routes>
                             <Route element={<Home />} path="/" />
                             <Route element={<SignUp />} path="/signup" />
                             <Route element={<Login />} path="/login" />
                             <Route element={<Tienda />} path="/tienda" />
                             <Route element={<AboutUs />} path="/aboutUs" />
-                            <Route element={<Cart />}  path="/cart" />
-                            <Route element={<Slidetobuy />}  path="/slidetobuy" />
+                            <Route element={<Cart />} path="/cart" />
+                            <Route element={<Slidetobuy />} path="/slidetobuy" />
                             <Route element={<CloudinaryImage />} path="/cloudinary" />
-                            <Route element={<AddProductForm />} path="/add-product" />
+                            <Route element={<PrivateRoute />}>
+                                <Route path="/admin/add-product" element={<AddProductForm />} />
+                                <Route path="/admin/add-promotion" element={<AddPromotionForm />} />
+                            </Route>
                             <Route path="/session" element={<ProtectedRoute />}>
                                 <Route path="profile" element={<Profile />} />
                                 <Route path="favorites" element={<Favorites />} />
                                 <Route path="payment" element={<Payment />} />
                                 <Route path="succeeded" element={<Succeeded />} />
                             </Route>
-                            <Route path="/admin/promotions" element={<AddPromotionForm />} />
                             <Route path="admin" element={<ExportProductImage />} />
                             <Route element={<h1>Not found!</h1>} />
                         </Routes>
