@@ -31,7 +31,7 @@ def create_token():
     user = User.query.filter_by(email=email).first()
     
     if user is None:
-        new_user = User(email=email, password=password, is_active=True)
+        new_user = User(email=email, password=password, is_admin=False)
         db.session.add(new_user)
         db.session.commit()
         return jsonify({"msg": "usuario creado"}), 200
