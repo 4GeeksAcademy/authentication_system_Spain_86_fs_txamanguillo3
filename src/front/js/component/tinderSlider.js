@@ -3,6 +3,7 @@ import TinderCard from 'react-tinder-card';
 import '../../styles/tinderSlider.css';
 import { Product } from './product';
 import { Context } from '../store/appContext';
+import { Link } from 'react-router-dom';
 
 export default function TinderSlider({product}) {
   const { store, actions } = useContext(Context);
@@ -78,7 +79,8 @@ export default function TinderSlider({product}) {
 
   return (
     <div className='containerBody'>
-      <h1>🔥🔥🔥🔥 Promo del día 🔥🔥🔥🔥</h1>
+      <h1>🔥 ¡Pruebe nuestro novedoso carrito "Tinder"! 🔥</h1>
+      <h4>O pulse &nbsp;<Link to="/cart"><strong>aquí</strong></Link>&nbsp; para ir directamente al carrito y efectuar el pago</h4>
       <div className='cardContainer'>
         {store.promotionsList.length > 0 ? (
           store.promotionsList.map((product, index) => (
@@ -91,12 +93,6 @@ export default function TinderSlider({product}) {
             >
               <div className="product-container">
                 <Product product={product} />
-                <button 
-                  className="delete-btn"
-                  onClick={() => handleDeletePromotion(product.id)}
-                >
-                  ❌ Eliminar
-                </button>
               </div>
             </TinderCard>
           ))

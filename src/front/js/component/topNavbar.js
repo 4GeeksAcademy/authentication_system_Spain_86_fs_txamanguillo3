@@ -51,20 +51,22 @@ export const TopNavbar = () => {
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
 
-                <Nav className='menu'>
-                    <Nav.Link className='linkButtom' as={Link} to="/">Home</Nav.Link>
-                    <Nav.Link className='linkButtom' as={Link} to="/slidetobuy">Slide to Buy</Nav.Link>
-                    <Nav.Link className='linkButtom' as={Link} to="/tienda">Tienda</Nav.Link>
-                    <Nav.Link className='linkButtom' as={Link} to="/aboutUs">About us</Nav.Link>
-                </Nav>
+
+                    <Nav className='menu'>
+                        <Nav.Link className='linkButtom'as={Link} to="/">Inicio</Nav.Link>
+                        <Nav.Link className='linkButtom' as={Link} to="/slidetobuy">Ofertas</Nav.Link>
+                        <Nav.Link className='linkButtom' as={Link} to="/tienda">Tienda</Nav.Link>
+                        <Nav.Link className='linkButtom' as={Link} to="/aboutUs">Sobre nosotros</Nav.Link>
+                    </Nav>
+
 
                 {isAuthenticated ? (
                     <div className='userButtoms'>
-                        <Button className='button1' as={Link} to='/session/profile' >Profile</Button>
+                        <Button className='button1' as={Link} to='/session/profile' >Perfil</Button>
                     </div>
                 ) : (
                     <div className='userButtoms'>
-                        <Button className='button1' as={Link} to='/login' >Log in</Button>
+                        <Button className='button1' as={Link} to='/login' >Inicia sesión</Button>
                         <Button className='button1' as={Link} to='/signup'>Regístrate</Button>
                     </div>
                 )}

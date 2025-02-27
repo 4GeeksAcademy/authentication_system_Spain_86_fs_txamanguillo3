@@ -26,8 +26,6 @@ export const Slidetobuy = () => {
 
   return (isLoading) ? <Loader /> : (
     <>
-      <h4>!Pruebe nuestro novedoso carrito "Tinder"¡</h4>
-      <h4>pulse&nbsp;<Link to="/cart"><strong>aquí</strong></Link>&nbsp;para ir directamente al carrito y efectuar el pago</h4>
       <Tinderslider productList={store.productList}/>
       <Footer />
     </>

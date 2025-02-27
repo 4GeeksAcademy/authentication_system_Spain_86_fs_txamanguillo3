@@ -175,8 +175,6 @@ export const Profile = () => {
                 className="form-control mb-2"
               />
             </div>
-
-            {/* Input para cambiar la imagen de perfil */}
             <div className="form-group">
               <label htmlFor="profileImage">Cambiar Imagen de Perfil</label>
               <CloudinaryUploadWidget setImageURL={setProfileImage} folder="profiles" />
@@ -216,7 +214,7 @@ export const Profile = () => {
 
             <button onClick={() => setIsEditing(true)} className="btn btn-primary btn-block">Editar Perfil</button>
             <br></br>
-            <button onClick={eliminarToken}>Log out</button>
+            <button onClick={eliminarToken}>Cierra sesión</button>
           </>
         )}
           
