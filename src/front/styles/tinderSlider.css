@@ -20,13 +20,12 @@ h4 {
   padding-bottom: 40px;
 }
 
-
 .swipe {
   position: absolute;
 }
 
 .cardContainer {
-  width: 300PX;
+  width: 300px;
   max-width: 300px;
   height: 424.23px;
 }
@@ -61,10 +60,9 @@ h4 {
   justify-content: center;
   display: flex;
   color: #fff;
-  animation-name: popup;
-  animation-duration: 800ms;
 }
 
+/* Botones */
 .buttons {
   margin: 20px;
   display: flex;
@@ -73,7 +71,7 @@ h4 {
 
 @media (max-width: 625px) {
   .buttons {
-    flex-direction: column;
+    flex-direction: row;
   }
 }
 
@@ -96,33 +94,17 @@ h4 {
   transform: scale(1.05);
   box-shadow: 0px 0px 30px 20px rgba(0, 0, 0, 0.10);
 }
+h1 {
+  font-size: 18px; /* Reduce el tamaño de la fuente */
+  white-space: nowrap; /* Evita saltos de línea */
+  overflow: hidden; /* Evita que el texto sobresalga */
+  text-overflow: ellipsis; /* Agrega "..." si el texto es muy largo */
+}
 
-@keyframes popup {
-  0% {
-    transform: scale(1, 1)
-  }
-
-  10% {
-    transform: scale(1.1, 1.1)
-  }
-
-  30% {
-    transform: scale(.9, .9)
-  }
-
-  50% {
-    transform: scale(1, 1)
-  }
-
-  57% {
-    transform: scale(1, 1)
-  }
-
-  64% {
-    transform: scale(1, 1)
-  }
-
-  100% {
-    transform: scale(1, 1)
-  }
+h4 {
+  font-size: 14px; /* Reduce el tamaño de la fuente */
+  padding-bottom: 20px; /* Reduce el espacio inferior */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
