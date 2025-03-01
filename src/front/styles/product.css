@@ -1,150 +1,186 @@
-.product {
-    background-color: #f5f5f5;
-    border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    max-width: 300px;
+/* Contenedor de productos ajustado al diseño del Tinder Slider */
+.product-container {
+    display: flex;
+    flex-direction: column; /* Se alinea en columna igual que .containerBody */
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    text-align: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    max-width: 100vw; /* Se adapta al ancho completo de la pantalla */
+    padding: 20px;
+    background-color: #F0F2F1; /* Fondo igual que .containerBody */
+    margin: 0 auto; /* Centra el contenedor */
+    gap: 20px; /* Espaciado uniforme entre elementos */
+}
+
+/* Tarjetas de producto ajustadas a las dimensiones del Tinder Slider */
+.product {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.30);
+    overflow: hidden;
+    width: 80vw;
+    max-width: 260px; /* Mismo ancho que .card */
+    height: 300px; /* Mismo alto que .card */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
-    min-height: 460px;
-    padding: 15px;
-    will-change: transform, box-shadow;
-    opacity: 0;
-    animation: snakeMove 1s ease-out forwards;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.product:hover {
-    transform: scale(1.05); 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
-}
-
+/* Imagen del producto adaptada */
 .product-image-container {
     width: 100%;
-    height: 200px;
+    height: 180px;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 20px 20px 0 0; /* Esquinas superiores redondeadas */
 }
 
 .product-image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 20px 20px 0 0;
     object-position: center 20%;
 }
 
+/* Contenido de la tarjeta */
 .product-card-body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     padding: 15px;
     width: 100%;
 }
 
+/* Títulos y texto alineados */
 .product-title {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 5px;
 }
 
 .product-description {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #777;
     margin-bottom: 10px;
 }
 
 .product-price {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #55848d;
     margin-bottom: 10px;
 }
 
+/* Botón "Agregar al carrito" alineado */
 .addTooCart {
     display: flex;
     align-items: center;
-    justify-content: center;
     align-self: center;
-    margin-top: auto;
-    margin-bottom: 6px;
-    width: 30%;
-    max-width: 180px;
+    justify-content: center;
+    width: 50px;
+    height: auto;
     background: #eff19f;
     color: rgb(11, 11, 11);
     border: 2px solid #55848d;
-    padding: 10px 12px;
+    padding: 8px 10px;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
     transition: background 0.3s ease-in-out, border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.deleteFomCart {
-    background: #f1f381;
-    border: 5px #00444E;
-    box-shadow: 0px 6px 20px #00444E;
-}
-
 .addTooCart:hover {
     background: #f1f381;
-    border: 5px #00444E;
-    box-shadow: 0px 6px 20px #00444E;
+    border: 2px solid #00444E;
+    box-shadow: 0px 6px 20px rgba(0, 68, 78, 0.5);
 }
 
-.addTooCart i {
-    margin-right: 5px;
+/* Botones alineados */
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 10px;
 }
 
+/* Botón "Eliminar del carrito" */
+.deleteFromCart, .deleteAllCart {
+    background: #f1f381;
+    border: 2px solid #55848d;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 0.70rem;
+    font-weight: bold;
+    color: #00444E;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: 100px;
+    max-width: 120px;
+    height: 32px;
+    text-align: center;
+}
+
+.deleteFromCart:hover {
+    background: orange;
+    box-shadow: inset 0 -6px 12px rgba(85, 132, 141, 0.4);
+    transform: translateY(-2px);
+}
+
+.deleteAllCart:hover {
+    background: rgb(236, 74, 74);
+    box-shadow: inset 0 -6px 12px rgba(85, 132, 141, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Responsividad ajustada */
 @media (max-width: 1024px) {
+    .product-container {
+        gap: 15px;
+        padding: 15px;
+    }
+
     .product {
-        max-width: 280px;
-        min-height: 450px;
+        max-width: 240px;
+        height: 280px;
     }
 }
 
 @media (max-width: 768px) {
+    .product-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+    }
+
     .product {
-        max-width: 90%;
-        min-height: auto;
+        width: 90vw;
+        max-width: 220px;
+        height: auto;
     }
-}
 
+    .addTooCart {
+        font-size: 0.8rem;
+        
+    }
 
-@keyframes snakeMove {
-    0% {
-        transform: translateX(-100vw) translateY(0);
-        opacity: 0;
+    .button-container {
+        flex-direction: column;
+        gap: 6px;
     }
-    25% {
-        transform: translateX(-75vw) translateY(10px);
-        opacity: 1;
-    }
-    50% {
-        transform: translateX(-50vw) translateY(-10px);
-    }
-    75% {
-        transform: translateX(-25vw) translateY(10px);
-    }
-    100% {
-        transform: translateX(0) translateY(0);
-        opacity: 1;
-    }
-}
-
-
-.product:nth-child(odd) {
-    animation-delay: calc(0.15s * var(--order));
-}
-
-.product:nth-child(even) {
-    animation-delay: calc(0.15s * var(--order));
 }

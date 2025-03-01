@@ -26,7 +26,7 @@ export const Product = ({ product, cantidad }) => {
       .map((item) =>
         item.id === product.id ? { ...item, cantidad: item.cantidad - 1 } : item
       )
-      .filter((item) => item.cantidad > 0); // Elimina productos con cantidad 0
+      .filter((item) => item.cantidad > 0);
     actions.actualizarCarrito(nuevoCarrito);
   };
 
@@ -55,11 +55,11 @@ export const Product = ({ product, cantidad }) => {
         <h3 className="product-title">{product.title}</h3>  
         <p className="product-description">{product.description}</p>
         <p className="product-price">{product.price} €</p>
-        <p className='product-cuantity'>{unidades.length > 0 && unidades[0]?.cantidad > 0 ? `Cantidad: ${unidades[0].cantidad}` : ""} </p>
+        <p className='product-quantity'>{unidades.length > 0 && unidades[0]?.cantidad > 0 ? `Cantidad: ${unidades[0].cantidad}` : ""} </p>
       </div>
       <button className='addTooCart' onClick={handleAgregarAlCarrito}><i class="fa-solid fa-cart-plus"></i></button>
-      <button className='deleteFromCart' onClick={handleReducirCarrito}>Borrar 1</button>
-      <button className='deleteCart' onClick={handleBorrarCarrito}><i class="fa-solid fa-diagram-predecessor"></i></button>
+      <button className='deleteFromCart' onClick={handleReducirCarrito}>Eliminar</button>
+      <button className='deleteAllCart' onClick={handleBorrarCarrito}>Eliminar todo</button>
     </div>
   </>);
 };
