@@ -5,30 +5,12 @@
   gap: 20px;
   width: 100%;
   max-width: 1100px;
-  margin: auto;
-  padding: 20px;
+  align-self: center;
+  padding-bottom: 20px;
 }
-
-@media (max-width: 1024px) {
-  .product-card-list {
-    max-width: 800px;
-  }
-
-  .product {
-    max-width: 280px;
-    width: auto;
-    margin: auto;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .product-card-list {
-    max-width: 90%;
-  }
 
   .product {
     max-width: 90%;
   }
-}
+
 

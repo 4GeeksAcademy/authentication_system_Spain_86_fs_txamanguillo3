@@ -30,7 +30,7 @@ export const TopNavbar = () => {
 
 
     const handleCartClick = () => {
-        navigate('/slidetobuy');
+        navigate('/cart');
     };
 
     return (
@@ -52,12 +52,12 @@ export const TopNavbar = () => {
             <Navbar.Collapse id="navbarScroll">
 
 
-                    <Nav className='menu'>
-                        <Nav.Link className='linkButtom'as={Link} to="/">Inicio</Nav.Link>
-                        <Nav.Link className='linkButtom' as={Link} to="/slidetobuy">Ofertas</Nav.Link>
-                        <Nav.Link className='linkButtom' as={Link} to="/tienda">Tienda</Nav.Link>
-                        <Nav.Link className='linkButtom' as={Link} to="/aboutUs">Sobre nosotros</Nav.Link>
-                    </Nav>
+                <Nav className='menu'>
+                    <Nav.Link className='linkButtom' as={Link} to="/">Tienda</Nav.Link>
+                    <Nav.Link className='linkButtom' as={Link} to="/slidetobuy">Ofertas</Nav.Link>
+                    <Nav.Link className='linkButtom' as={Link} to="/aboutUs">Sobre nosotros</Nav.Link>
+                    &nbsp;&nbsp;
+                </Nav>
 
 
                 {isAuthenticated ? (

@@ -8,6 +8,7 @@ import { ProductCards } from '../component/ProductCard';
 import '../../styles/tienda.css'
 import { Footer } from '../component/footer';
 import { Context } from '../store/appContext';
+import { Link } from 'react-router-dom';
 
 export const Tienda = () => {
   const cld = new Cloudinary({ cloud: { cloudName: 'dmo7oubln' } });
@@ -32,8 +33,6 @@ export const Tienda = () => {
     <>
       <div className='shop'>
         <h1>Tienda</h1>
-        <br />
-        <h2 className=''>Productos</h2>
         <div className="product-card-list">
           {store.filteredProducts.length > 0 ? (
             <ProductCards products={store.filteredProducts} />
@@ -43,9 +42,8 @@ export const Tienda = () => {
             <ProductCards products={store.productList} />
           )}
         </div>
-
+        <Link to='/slidetobuy'><h1>Continúa con el proceso</h1></Link>
       </div>
-      <h3></h3>
       <Footer />
     </>
   )
