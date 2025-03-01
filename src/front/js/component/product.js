@@ -58,7 +58,7 @@ export const Product = ({ product, cantidad }) => {
         <p className='product-quantity'>{unidades.length > 0 && unidades[0]?.cantidad > 0 ? `Cantidad: ${unidades[0].cantidad}` : ""} </p>
       </div>
       <button className='addTooCart' onClick={handleAgregarAlCarrito}><i class="fa-solid fa-cart-plus"></i></button>
-      <button className='deleteFromCart' onClick={handleReducirCarrito}>Eliminar</button>
+      <button className='deleteFromCart' onClick={handleReducirCarrito}>Eliminar uno</button>
       <button className='deleteAllCart' onClick={handleBorrarCarrito}>Eliminar todo</button>
     </div>
   </>);

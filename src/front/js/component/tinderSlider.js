@@ -80,7 +80,6 @@ export default function TinderSlider({product}) {
   return (
     <div className='containerBody'>
       <h1>🔥 ¡Pruebe nuestro novedoso carrito "Tinder"! 🔥</h1>
-      <h4>O pulse &nbsp;<Link to="/cart"><strong>aquí</strong></Link>&nbsp; para ir directamente al carrito y efectuar el pago</h4>
       <div className='cardContainer'>
         {store.promotionsList.length > 0 ? (
           store.promotionsList.map((product, index) => (
@@ -105,21 +104,22 @@ export default function TinderSlider({product}) {
           disabled={currentIndex === null || currentIndex < 0}
           onClick={() => swipe('left', store.promotionsList[currentIndex])}
         >
-          Swipe left!
+          <i class="fa-solid fa-xmark" style={{color: "#ff0000"}}></i>
         </button>
         <button
           disabled={currentIndex === null || currentIndex >= store.promotionsList.length - 1}
           onClick={() => goBack()}
         >
-          Undo swipe!
+          <i class="fa-solid fa-arrow-rotate-left" style={{color: "#FFD43B"}}></i>
         </button>
         <button
           disabled={currentIndex === null || currentIndex < 0}
           onClick={() => swipe('right', store.promotionsList[currentIndex])}
         >
-          Swipe right!
+          <i class="fa-solid fa-heart" style={{color: "#35f00f"}}></i>
         </button>
       </div>
+      <Link to="/cart"><h4>O dirígete al carrito</h4></Link>
     </div>
   );
 }

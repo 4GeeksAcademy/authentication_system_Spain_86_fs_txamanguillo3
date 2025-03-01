@@ -77,7 +77,7 @@
 
 .button1 {
   background-color: #eef07a;
-  border-radius: 5px;
+  border-radius: 10px;
   border: none;
   color: #00444E;
   font-weight: 800;
@@ -88,6 +88,9 @@
 .button1:hover {
   background-color: #00444E;
   color: #eef07a;
+  border-radius: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
 
 .buttonCart {
@@ -107,7 +110,7 @@
 
 @media (max-width: 768px) {
   .navbarTop {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     padding: 1.5vh;
   }

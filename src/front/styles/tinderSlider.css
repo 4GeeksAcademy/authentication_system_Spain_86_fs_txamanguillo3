@@ -9,15 +9,31 @@
 h1 {
   font-weight: 700;
   color: #00444E;
-  text-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.30);
   text-align: center;
+  font-size: 35px;
+  white-space: normal;
+  overflow: hidden;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas dinámicas */
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 h4 {
   font-weight: 700;
   color: #00444E;
+  text-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.30);
   text-align: center;
-  padding-bottom: 40px;
+  font-size: 20px;
+  white-space: normal;
+  overflow: hidden;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas dinámicas */
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
 }
 
 .swipe {
@@ -28,7 +44,8 @@ h4 {
   width: 300px;
   max-width: 300px;
   height: 424.23px;
-}
+  padding-top: 20px;
+};
 
 .card {
   position: relative;
@@ -36,8 +53,8 @@ h4 {
   width: 80vw;
   max-width: 260px;
   height: 300px;
-  box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.30);
-  border-radius: 20px;
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.30);
+  border-radius: 30px;
   background-size: cover;
   background-position: center;
   margin-top: 5vh;
@@ -78,33 +95,18 @@ h4 {
 .buttons button {
   flex-shrink: 0;
   padding: 10px;
-  border-radius: 5px;
-  border: none;
-  color: #00444E;
+  border-radius: 100%;
+  border: solid rgb(129, 115, 115), 1px;
   font-size: 18px;
-  background-color: #F1F381;
+  background-color: #ffffff;
   transition: 200ms;
   margin: 10px;
   font-weight: bolder;
-  width: 160px;
+  width: 50px;
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.10);
 }
 
 .buttons button:hover {
   transform: scale(1.05);
   box-shadow: 0px 0px 30px 20px rgba(0, 0, 0, 0.10);
-}
-h1 {
-  font-size: 18px; /* Reduce el tamaño de la fuente */
-  white-space: nowrap; /* Evita saltos de línea */
-  overflow: hidden; /* Evita que el texto sobresalga */
-  text-overflow: ellipsis; /* Agrega "..." si el texto es muy largo */
-}
-
-h4 {
-  font-size: 14px; /* Reduce el tamaño de la fuente */
-  padding-bottom: 20px; /* Reduce el espacio inferior */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
