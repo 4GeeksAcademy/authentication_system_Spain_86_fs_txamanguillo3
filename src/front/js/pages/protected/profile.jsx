@@ -189,11 +189,6 @@ export const Profile = () => {
               {profileData.description}
             </Card.Text>
 
-            <div className="about-me mb-3 text-center">
-              <h5>Acerca de mí</h5>
-              <p>{profileData.description}</p>
-            </div>
-
             <div className="details mb-3">
               <p><strong>Edad:</strong> {profileData.age}</p>
               <p><strong>Ubicación:</strong> {profileData.location}</p>
@@ -214,7 +209,7 @@ export const Profile = () => {
 
             <button onClick={() => setIsEditing(true)} className="btn btn-primary btn-block">Editar Perfil</button>
             <br></br>
-            <button onClick={eliminarToken}>Cierra sesión</button>
+            <button className="btn btn-primary btn-block" onClick={eliminarToken}>Cierra sesión</button>
           </>
         )}
           

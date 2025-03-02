@@ -9,12 +9,12 @@ export const Cart = () => {
   const { store, action } = useContext(Context);
 
   useEffect(() => {
-    console.log(store.cart)
+    
   }, [store.cart])
 
   return (<>
     <div className='cart-container'>
-      <h1> Tu Carrito </h1>
+      <h1> Tu Carrito: {store.cartTotalAmount} € </h1>
       <div>
         {store.cart.length === 0 ? (
           <h4>Tu carrito está vacío</h4>
