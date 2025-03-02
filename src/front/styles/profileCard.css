@@ -1,6 +1,5 @@
 .profile-card {
     max-width: 18rem;
-    margin: auto;
     background-color: #ced8d4!important; 
   }
   
@@ -10,6 +9,7 @@
     height: 170px;
     margin: 0 auto;
     display: block;
+    padding-top: 10px;
   }
   
   
