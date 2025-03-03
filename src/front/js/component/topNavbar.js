@@ -19,7 +19,7 @@ export const TopNavbar = () => {
     const handleSearch = (e) => {
         e.preventDefault();
         actions.searchProducts(searchTerm);
-        navigate("/tienda");
+        navigate("/");
     };
 
     useEffect(() => {
