@@ -5,7 +5,7 @@ import { Product } from './product';
 import { Context } from '../store/appContext';
 import { Link } from 'react-router-dom';
 
-export default function TinderSlider({product}) {
+export default function TinderSlider({ product }) {
   const { store, actions } = useContext(Context);
   const [currentIndex, setCurrentIndex] = useState(null);
   const currentIndexRef = useRef(currentIndex);
@@ -37,29 +37,29 @@ export default function TinderSlider({product}) {
   const swipe = async (dir, product) => {
     if (currentIndex !== null && currentIndex >= 0) {
       await childRefs[currentIndex].current.swipe(dir);
-  
+
       if (dir === "right" && product) {
-        actions.agregarAlCarrito(product); 
+        actions.agregarAlCarrito(product);
       }
-      if (dir === "left" && product){
+      if (dir === "left" && product) {
         handleReducirCart(product)
       }
     }
   };
 
-  const handleReducirCart= (product) => {
+  const handleReducirCart = (product) => {
     if (!product) return;
-  
+
     let nuevoCarrito = store.cart
       .map((item) =>
         item.id === product.id ? { ...item, cantidad: item.cantidad - 1 } : item
       )
-      .filter((item) => item.cantidad > 0); 
-  
+      .filter((item) => item.cantidad > 0);
+
     actions.actualizarCarrito(nuevoCarrito);
   };
-  
-  
+
+
 
   const goBack = async () => {
     if (currentIndex !== null && currentIndex < store.promotionsList.length - 1) {
@@ -104,19 +104,19 @@ export default function TinderSlider({product}) {
           disabled={currentIndex === null || currentIndex < 0}
           onClick={() => swipe('left', store.promotionsList[currentIndex])}
         >
-          <i class="fa-solid fa-xmark" style={{color: "#ff0000"}}></i>
+          <i className="fa-solid fa-xmark" style={{ color: "#ff0000" }}></i>
         </button>
         <button
           disabled={currentIndex === null || currentIndex >= store.promotionsList.length - 1}
           onClick={() => goBack()}
         >
-          <i class="fa-solid fa-arrow-rotate-left" style={{color: "#FFD43B"}}></i>
+          <i className="fa-solid fa-arrow-rotate-left" style={{ color: "#FFD43B" }}></i>
         </button>
         <button
           disabled={currentIndex === null || currentIndex < 0}
           onClick={() => swipe('right', store.promotionsList[currentIndex])}
         >
-          <i class="fa-solid fa-heart" style={{color: "#35f00f"}}></i>
+          <i className="fa-solid fa-heart" style={{ color: "#35f00f" }}></i>
         </button>
       </div>
       <Link to="/cart"><h4>O dirígete al carrito</h4></Link>

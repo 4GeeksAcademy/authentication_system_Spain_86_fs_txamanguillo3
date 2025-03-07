@@ -58,17 +58,17 @@ export const Product = ({ product, cantidad }) => {
         <p className='product-quantity'>{unidades.length > 0 && unidades[0]?.cantidad > 0 ? `En tu cesta: ${unidades[0].cantidad}` : ""} </p>
       </div>
       {(!unidades[0]?.cantidad) && (<>
-        <button className='addTooCart' onClick={handleAgregarAlCarrito}><i class="fa-solid fa-cart-plus"></i></button>
+        <button className='addTooCart' onClick={handleAgregarAlCarrito}><i className="fa-solid fa-cart-plus"></i></button>
       </>)}
       <div className="product-actions-container">
         {(unidades[0]?.cantidad > 0 && unidades[0]?.cantidad < 2) && (<>
-          <button className='deleteAllCart' onClick={handleBorrarCarrito}><i class="fa-solid fa-trash"></i></button>
-          <button className='addTooCart' onClick={handleAgregarAlCarrito}><i class="fa-solid fa-plus"></i></button>
+          <button className='deleteAllCart' onClick={handleBorrarCarrito}><i className="fa-solid fa-trash"></i></button>
+          <button className='addTooCart' onClick={handleAgregarAlCarrito}><i className="fa-solid fa-plus"></i></button>
         </>
         )}
         {(unidades[0]?.cantidad > 0 && unidades[0]?.cantidad >= 2) && (<>
-          <button className='deleteFromCart' onClick={handleReducirCarrito}><i class="fa-solid fa-minus"></i></button>
-          <button className='addTooCart' onClick={handleAgregarAlCarrito}><i class="fa-solid fa-plus"></i></button>
+          <button className='deleteFromCart' onClick={handleReducirCarrito}><i className="fa-solid fa-minus"></i></button>
+          <button className='addTooCart' onClick={handleAgregarAlCarrito}><i className="fa-solid fa-plus"></i></button>
         </>
         )}
       </div>
