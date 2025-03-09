@@ -9,27 +9,30 @@ export const Cart = () => {
   const { store, action } = useContext(Context);
 
   useEffect(() => {
-    
+
   }, [store.cart])
 
   return (<>
-    <div className='cart-container'>
-      <h1> Tu Carrito: {store.cartTotalAmount} € </h1>
-      <div>
-        {store.cart.length === 0 ? (
-          <h4>Tu carrito está vacío</h4>
-        ) : (<>
-          {store.cart.map(product => {
-            return (<div className='products-container'>
-              <Product product={product} />
-            </div>)
-          })}
-        </>)
-        }
+    {store.cart.length > 0 && (
+      <div className="cart-header">
+        <h1> Tu Carrito: {store.cartTotalAmount} € </h1>
+        <Link to="/session/payment">
+          <h1>Checkout</h1>
+        </Link>
       </div>
-      <Link to="/session/payment">
-        <h1>Checkout</h1>
-      </Link>
+    )}
+    <div className='cart-container'>
+      {store.cart.length === 0 ? (
+        <h4>Tu carrito está vacío</h4>
+      ) : (<>
+        {store.cart.map(product => {
+          return (<div className='products-container' key={product.id} >
+            <Product product={product} />
+          </div>)
+        })}
+      </>)
+      }
     </div>
+
   </>)
 }

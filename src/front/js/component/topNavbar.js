@@ -6,6 +6,7 @@ import '../../styles/topNavbar.css'
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { Context } from '../store/appContext';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 
 
 export const TopNavbar = () => {
@@ -15,6 +16,13 @@ export const TopNavbar = () => {
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState("");
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen)
+    };
+
+    const handleClose = () => setMenuOpen(false);
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -34,7 +42,7 @@ export const TopNavbar = () => {
     };
 
     return (
-        <Navbar expand="lg" className="navbarTop">
+        <Navbar expand="md" className="navbarTop" >
             <form className='searcher' onSubmit={handleSearch}>
                 <input
                     type="search"
@@ -48,30 +56,32 @@ export const TopNavbar = () => {
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
-            <Navbar.Toggle aria-controls="navbarScroll" />
-            <Navbar.Collapse id="navbarScroll">
+            <Navbar.Offcanvas id="navbarScroll" placement="end" collapseOnSelect
+                restoreFocus={false}
+                show={menuOpen}
+                onHide={handleClose}>
 
-
-                <Nav className='menu'>
-                    <Nav.Link className='linkButtom' as={Link} to="/">Tienda</Nav.Link>
-                    <Nav.Link className='linkButtom' as={Link} to="/slidetobuy">Ofertas</Nav.Link>
-                    <Nav.Link className='linkButtom' as={Link} to="/aboutUs">Sobre nosotros</Nav.Link>
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>
+                        Menu
+                    </Offcanvas.Title>
+                </Offcanvas.Header>
+                <Nav className='menu d-flex align-items-center'>
+                    <Nav.Link className='linkButtom' as={Link} to="/" onClick={toggleMenu}>Tienda</Nav.Link>
+                    <Nav.Link className='linkButtom' as={Link} to="/slidetobuy" onClick={toggleMenu}>Ofertas</Nav.Link>
+                    <Nav.Link className='linkButtom' as={Link} to="/aboutUs" onClick={toggleMenu}>Sobre nosotros</Nav.Link>
                     &nbsp;&nbsp;
+                    {isAuthenticated ? (
+                        <Button className='button1' as={Link} to='/session/profile' onClick={toggleMenu}>Perfil</Button>
+                    ) : (<>
+                        <Button className='button1' as={Link} to='/login' onClick={toggleMenu}>Inicia sesión</Button>
+                        <Button className='button1' as={Link} to='/signup' onClick={toggleMenu}>Regístrate</Button>
+                    </>)}
                 </Nav>
-
-
-                {isAuthenticated ? (
-                    <div className='userButtoms'>
-                        <Button className='button1' as={Link} to='/session/profile' >Perfil</Button>
-                    </div>
-                ) : (
-                    <div className='userButtoms'>
-                        <Button className='button1' as={Link} to='/login' >Inicia sesión</Button>
-                        <Button className='button1' as={Link} to='/signup'>Regístrate</Button>
-                    </div>
-                )}
-            </Navbar.Collapse>
+            </Navbar.Offcanvas>
             <Button className='buttonCart' onClick={handleCartClick}><i className="fa-solid fa-cart-shopping"></i>&nbsp;<span >{store.cart.length}</span></Button>
+            <Navbar.Toggle aria-controls="navbarScroll"
+                onClick={toggleMenu} />
         </Navbar>
     )
 }

@@ -1,25 +1,34 @@
 /* Contenedor de productos ajustado al diseño del Tinder Slider */
 .product-container {
     display: flex;
-    flex-direction: column; /* Se alinea en columna igual que .containerBody */
+    flex-direction: column;
+    /* Se alinea en columna igual que .containerBody */
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 100vw; /* Se adapta al ancho completo de la pantalla */
+    max-width: 100vw;
+    /* Se adapta al ancho completo de la pantalla */
     padding: 20px;
-    background-color: #F0F2F1; /* Fondo igual que .containerBody */
-    margin: 0 auto; /* Centra el contenedor */
-    gap: 20px; /* Espaciado uniforme entre elementos */
+    /* background-color: #F0F2F1; */
+    /* Fondo igual que .containerBody */
+    margin: 0 auto;
+    /* Centra el contenedor */
+    gap: 20px;
+    /* Espaciado uniforme entre elementos */
 }
 
+.product-quantity {
+    margin: 0;
+}
 
 .product {
+    padding: 0.5rem;
     background-color: #fff;
     border-radius: 20px;
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.30);
     overflow: hidden;
     width: 80vw;
-    max-width: 260px; 
+    max-width: 260px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -34,16 +43,23 @@
 .product-image-container {
     width: 100%;
     height: 180px;
-    overflow: hidden;
-    border-radius: 20px 20px 0 0; /* Esquinas superiores redondeadas */
+    border-radius: 20px 20px 0 0;
+    /* Esquinas superiores redondeadas */
+}
+
+.product-actions-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: fit-content;
 }
 
 .product-image-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    border-radius: 20px 20px 0 0;
+    object-fit: contain;
     object-position: center;
+    border-radius: 20px 20px 0 0;
 }
 
 /* Contenido de la tarjeta */
@@ -89,6 +105,9 @@
     background: #eff19f;
     color: rgb(11, 11, 11);
     border: 2px solid #55848d;
+    min-width: 100px;
+    max-width: 120px;
+    height: 32px;
     padding: 8px 10px;
     border-radius: 8px;
     font-size: 0.85rem;
@@ -116,8 +135,6 @@
 
 /* Botón "Eliminar del carrito" */
 .deleteFromCart {
-    background: #f1f381;
-    border: 2px solid #55848d;
     padding: 6px 10px;
     border-radius: 8px;
     font-size: 0.70rem;
@@ -131,15 +148,12 @@
     align-self: center;
     justify-content: center;
     gap: 4px;
-    min-width: 100px;
-    max-width: 120px;
-    height: 32px;
     text-align: center;
 }
 
 .deleteAllCart {
-    background: #f1f381;
-    border: 2px solid #55848d;
+    background: transparent;
+    border: 2px solid transparent;
     padding: 6px 10px;
     border-radius: 8px;
     font-size: 0.70rem;
@@ -153,9 +167,6 @@
     align-self: center;
     justify-content: center;
     gap: 4px;
-    min-width: 100px;
-    max-width: 120px;
-    height: 32px;
     text-align: center;
     padding-bottom: 5px;
 }

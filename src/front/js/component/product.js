@@ -13,7 +13,7 @@ export const Product = ({ product, cantidad }) => {
     if (product) {
       actions.agregarAlCarrito({
         id: product.id,
-        imageId: product.imageId || product.image_url, 
+        imageId: product.imageId || product.image_url,
         name: product.name,
         price: product.price,
         cantidad: product.quantity
@@ -42,7 +42,7 @@ export const Product = ({ product, cantidad }) => {
   }, [store.cart])
 
   useEffect(() => {
-    
+
   }, [])
 
 
@@ -52,14 +52,27 @@ export const Product = ({ product, cantidad }) => {
         <img src={product.imageId || product.image_url} alt={product.name} />
       </div>
       <div className="product-card-body">
-        <h3 className="product-title">{product.title}</h3>  
+        <h3 className="product-title">{product.title}</h3>
         <p className="product-description">{product.description}</p>
         <p className="product-price">{product.price} €</p>
-        <p className='product-quantity'>{unidades.length > 0 && unidades[0]?.cantidad > 0 ? `Cantidad: ${unidades[0].cantidad}` : ""} </p>
+        <p className='product-quantity'>{unidades.length > 0 && unidades[0]?.cantidad > 0 ? `En tu cesta: ${unidades[0].cantidad}` : ""} </p>
       </div>
-      <button className='addTooCart' onClick={handleAgregarAlCarrito}><i class="fa-solid fa-cart-plus"></i></button>
-      <button className='deleteFromCart' onClick={handleReducirCarrito}>Eliminar uno</button>
-      <button className='deleteAllCart' onClick={handleBorrarCarrito}>Eliminar todo</button>
+      {(!unidades[0]?.cantidad) && (<>
+        <button className='addTooCart' onClick={handleAgregarAlCarrito}><i className="fa-solid fa-cart-plus"></i></button>
+      </>)}
+      <div className="product-actions-container">
+        {(unidades[0]?.cantidad > 0 && unidades[0]?.cantidad < 2) && (<>
+          <button className='deleteAllCart' onClick={handleBorrarCarrito}><i className="fa-solid fa-trash"></i></button>
+          <button className='addTooCart' onClick={handleAgregarAlCarrito}><i className="fa-solid fa-plus"></i></button>
+        </>
+        )}
+        {(unidades[0]?.cantidad > 0 && unidades[0]?.cantidad >= 2) && (<>
+          <button className='deleteFromCart' onClick={handleReducirCarrito}><i className="fa-solid fa-minus"></i></button>
+          <button className='addTooCart' onClick={handleAgregarAlCarrito}><i className="fa-solid fa-plus"></i></button>
+        </>
+        )}
+      </div>
+
     </div>
   </>);
 };
