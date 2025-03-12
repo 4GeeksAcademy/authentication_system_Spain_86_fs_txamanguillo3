@@ -44,7 +44,6 @@ export const Tienda = () => {
         </div>
         <Link to='/slidetobuy'><h1>Continúa con el proceso</h1></Link>
       </div>
-      <Footer />
     </>
   )
 }

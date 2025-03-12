@@ -84,7 +84,6 @@ export const AboutUs = () => {
           </div>
         </div>
       </div>
-      <Footer className="footer-about-us" />
     </div>
   );
 }

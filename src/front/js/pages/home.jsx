@@ -33,7 +33,6 @@ export const Home = () => {
       <h1>Productos en oferta</h1>
       <ProductCards products={store.productList} />
       <br />
-      <Footer />
     </div>
   </>)
 }

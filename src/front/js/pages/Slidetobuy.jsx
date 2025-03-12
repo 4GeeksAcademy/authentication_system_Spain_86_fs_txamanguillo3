@@ -27,7 +27,6 @@ export const Slidetobuy = () => {
   return (isLoading) ? <Loader /> : (
     <>
       <Tinderslider productList={store.productList}/>
-      <Footer />
     </>
   )
 }
